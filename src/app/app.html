@@ -1,344 +1,932 @@
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * The content below * * * * * * * * * * * -->
-<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->
-<!-- * * * * * * * * * * and can be replaced.  * * * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * Delete the template below * * * * * * * * * -->
-<!-- * * * * * * * to get started with your project! * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<!-- TOAST NOTIFICATION -->
+@if (toastMessage(); as msg) {
+  <div class="fixed bottom-6 right-6 z-50 max-w-sm bg-[#CCFF00] text-black font-grotesk font-bold px-5 py-3.5 rounded-xl border-2 border-black shadow-[6px_6px_0px_#7C3AED] flex items-center gap-3">
+    <span class="w-2.5 h-2.5 rounded-full bg-black animate-ping"></span>
+    <span class="text-sm">{{ msg }}</span>
+  </div>
+}
 
-<style>
-  :host {
-    --bright-blue: oklch(51.01% 0.274 263.83);
-    --electric-violet: oklch(53.18% 0.28 296.97);
-    --french-violet: oklch(47.66% 0.246 305.88);
-    --vivid-pink: oklch(69.02% 0.277 332.77);
-    --hot-red: oklch(61.42% 0.238 15.34);
-    --orange-red: oklch(63.32% 0.24 31.68);
+<!-- TOP NAVBAR -->
+<header class="sticky top-0 z-40 backdrop-blur-xl bg-[#09090B]/85 border-b border-zinc-800/90">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
+    <!-- Brand Identity -->
+    <a href="#" class="flex items-center gap-3 group">
+      <div class="w-11 h-11 rounded-xl bg-[#CCFF00] text-black flex items-center justify-center font-display font-extrabold text-xl border-2 border-black shadow-[3px_3px_0px_#FF2A85] group-hover:rotate-6 transition-transform">
+        AP
+      </div>
+      <div>
+        <div class="flex items-center gap-2">
+          <span class="font-display font-extrabold text-lg tracking-tight text-white">ANNA PUGA</span>
+          <span class="font-mono-tech text-[10px] uppercase px-2 py-0.5 rounded bg-zinc-800 text-[#CCFF00] border border-zinc-700">14 YRS PRO</span>
+        </div>
+        <p class="text-xs text-zinc-400 font-mono-tech">CREATIVE LAB • DESIGN • PRINT • HITMAKER</p>
+      </div>
+    </a>
 
-    --gray-900: oklch(19.37% 0.006 300.98);
-    --gray-700: oklch(36.98% 0.014 302.71);
-    --gray-400: oklch(70.9% 0.015 304.04);
+    <!-- Navigation Links -->
+    <nav class="hidden md:flex items-center gap-7 text-sm font-medium text-zinc-300">
+      <a href="#ecossistema" class="hover:text-[#CCFF00] transition-colors">Ecossistema 360°</a>
+      <a href="#portfolio" class="hover:text-[#CCFF00] transition-colors">Portfólio & Cases</a>
+      <a href="#hitmaker" class="hover:text-[#FF2A85] transition-colors flex items-center gap-1.5">
+        <span class="w-2 h-2 rounded-full bg-[#FF2A85] animate-pulse"></span>
+        Hitmaker Studio
+      </a>
+      <a href="#estampas" class="hover:text-[#00F0FF] transition-colors">Showroom Estampas</a>
+    </nav>
 
-    --red-to-pink-to-purple-vertical-gradient: linear-gradient(
-      180deg,
-      var(--orange-red) 0%,
-      var(--vivid-pink) 50%,
-      var(--electric-violet) 100%
-    );
-
-    --red-to-pink-to-purple-horizontal-gradient: linear-gradient(
-      90deg,
-      var(--orange-red) 0%,
-      var(--vivid-pink) 50%,
-      var(--electric-violet) 100%
-    );
-
-    --pill-accent: var(--bright-blue);
-
-    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-      Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
-      "Segoe UI Symbol";
-    box-sizing: border-box;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    display: block;
-    height: 100dvh;
-  }
-
-  h1 {
-    font-size: 3.125rem;
-    color: var(--gray-900);
-    font-weight: 500;
-    line-height: 100%;
-    letter-spacing: -0.125rem;
-    margin: 0;
-    font-family: "Inter Tight", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-      Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
-      "Segoe UI Symbol";
-  }
-
-  p {
-    margin: 0;
-    color: var(--gray-700);
-  }
-
-  main {
-    width: 100%;
-    min-height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 1rem;
-    box-sizing: inherit;
-    position: relative;
-  }
-
-  .angular-logo {
-    max-width: 9.2rem;
-  }
-
-  .content {
-    display: flex;
-    justify-content: space-around;
-    width: 100%;
-    max-width: 700px;
-    margin-bottom: 3rem;
-  }
-
-  .content h1 {
-    margin-top: 1.75rem;
-  }
-
-  .content p {
-    margin-top: 1.5rem;
-  }
-
-  .divider {
-    width: 1px;
-    background: var(--red-to-pink-to-purple-vertical-gradient);
-    margin-inline: 0.5rem;
-  }
-
-  .pill-group {
-    display: flex;
-    flex-direction: column;
-    align-items: start;
-    flex-wrap: wrap;
-    gap: 1.25rem;
-  }
-
-  .pill {
-    display: flex;
-    align-items: center;
-    --pill-accent: var(--bright-blue);
-    background: color-mix(in srgb, var(--pill-accent) 5%, transparent);
-    color: var(--pill-accent);
-    padding-inline: 0.75rem;
-    padding-block: 0.375rem;
-    border-radius: 2.75rem;
-    border: 0;
-    transition: background 0.3s ease;
-    font-family: var(--inter-font);
-    font-size: 0.875rem;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 1.4rem;
-    letter-spacing: -0.00875rem;
-    text-decoration: none;
-    white-space: nowrap;
-  }
-
-  .pill:hover {
-    background: color-mix(in srgb, var(--pill-accent) 15%, transparent);
-  }
-
-  .pill-group .pill:nth-child(6n + 1) {
-    --pill-accent: var(--bright-blue);
-  }
-  .pill-group .pill:nth-child(6n + 2) {
-    --pill-accent: var(--electric-violet);
-  }
-  .pill-group .pill:nth-child(6n + 3) {
-    --pill-accent: var(--french-violet);
-  }
-
-  .pill-group .pill:nth-child(6n + 4),
-  .pill-group .pill:nth-child(6n + 5),
-  .pill-group .pill:nth-child(6n + 6) {
-    --pill-accent: var(--hot-red);
-  }
-
-  .pill-group svg {
-    margin-inline-start: 0.25rem;
-  }
-
-  .social-links {
-    display: flex;
-    align-items: center;
-    gap: 0.73rem;
-    margin-top: 1.5rem;
-  }
-
-  .social-links path {
-    transition: fill 0.3s ease;
-    fill: var(--gray-400);
-  }
-
-  .social-links a:hover svg path {
-    fill: var(--gray-900);
-  }
-
-  @media screen and (max-width: 650px) {
-    .content {
-      flex-direction: column;
-      width: max-content;
-    }
-
-    .divider {
-      height: 1px;
-      width: 100%;
-      background: var(--red-to-pink-to-purple-horizontal-gradient);
-      margin-block: 1.5rem;
-    }
-  }
-</style>
-
-<main class="main">
-  <div class="content">
-    <div class="left-side">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 982 239"
-        fill="none"
-        class="angular-logo"
-      >
-        <g clip-path="url(#a)">
-          <path
-            fill="url(#b)"
-            d="M388.676 191.625h30.849L363.31 31.828h-35.758l-56.215 159.797h30.848l13.174-39.356h60.061l13.256 39.356Zm-65.461-62.675 21.602-64.311h1.227l21.602 64.311h-44.431Zm126.831-7.527v70.202h-28.23V71.839h27.002v20.374h1.392c2.782-6.71 7.2-12.028 13.255-15.956 6.056-3.927 13.584-5.89 22.503-5.89 8.264 0 15.465 1.8 21.684 5.318 6.137 3.518 10.964 8.673 14.319 15.382 3.437 6.71 5.074 14.81 4.992 24.383v76.175h-28.23v-71.92c0-8.019-2.046-14.237-6.219-18.819-4.173-4.5-9.819-6.791-17.102-6.791-4.91 0-9.328 1.063-13.174 3.272-3.846 2.128-6.792 5.237-9.001 9.328-2.046 4.009-3.191 8.918-3.191 14.728ZM589.233 239c-10.147 0-18.82-1.391-26.103-4.091-7.282-2.7-13.092-6.382-17.511-10.964-4.418-4.582-7.528-9.655-9.164-15.219l25.448-6.136c1.145 2.372 2.782 4.663 4.991 6.954 2.209 2.291 5.155 4.255 8.837 5.81 3.683 1.554 8.428 2.291 14.074 2.291 8.019 0 14.647-1.964 19.884-5.81 5.237-3.845 7.856-10.227 7.856-19.064v-22.665h-1.391c-1.473 2.946-3.601 5.892-6.383 9.001-2.782 3.109-6.464 5.645-10.965 7.691-4.582 2.046-10.228 3.109-17.101 3.109-9.165 0-17.511-2.209-25.039-6.545-7.446-4.337-13.42-10.883-17.757-19.474-4.418-8.673-6.628-19.473-6.628-32.565 0-13.091 2.21-24.301 6.628-33.383 4.419-9.082 10.311-15.955 17.839-20.7 7.528-4.746 15.874-7.037 25.039-7.037 7.037 0 12.846 1.145 17.347 3.518 4.582 2.373 8.182 5.236 10.883 8.51 2.7 3.272 4.746 6.382 6.137 9.327h1.554v-19.8h27.821v121.749c0 10.228-2.454 18.737-7.364 25.447-4.91 6.709-11.538 11.7-20.048 15.055-8.509 3.355-18.165 4.991-28.884 4.991Zm.245-71.266c5.974 0 11.047-1.473 15.302-4.337 4.173-2.945 7.446-7.118 9.573-12.519 2.21-5.482 3.274-12.027 3.274-19.637 0-7.609-1.064-14.155-3.274-19.8-2.127-5.646-5.318-10.064-9.491-13.255-4.174-3.11-9.329-4.746-15.384-4.746s-11.537 1.636-15.792 4.91c-4.173 3.272-7.365 7.772-9.492 13.418-2.128 5.727-3.191 12.191-3.191 19.392 0 7.2 1.063 13.745 3.273 19.228 2.127 5.482 5.318 9.736 9.573 12.764 4.174 3.027 9.41 4.582 15.629 4.582Zm141.56-26.51V71.839h28.23v119.786h-27.412v-21.273h-1.227c-2.7 6.709-7.119 12.191-13.338 16.446-6.137 4.255-13.747 6.382-22.748 6.382-7.855 0-14.81-1.718-20.783-5.237-5.974-3.518-10.72-8.591-14.075-15.382-3.355-6.709-5.073-14.891-5.073-24.464V71.839h28.312v71.921c0 7.609 2.046 13.664 6.219 18.083 4.173 4.5 9.655 6.709 16.365 6.709 4.173 0 8.183-.982 12.111-3.028 3.927-2.045 7.118-5.072 9.655-9.082 2.537-4.091 3.764-9.164 3.764-15.218Zm65.707-109.395v159.796h-28.23V31.828h28.23Zm44.841 162.169c-7.61 0-14.402-1.391-20.457-4.091-6.055-2.7-10.883-6.791-14.32-12.109-3.518-5.319-5.237-11.946-5.237-19.801 0-6.791 1.228-12.355 3.765-16.773 2.536-4.419 5.891-7.937 10.228-10.637 4.337-2.618 9.164-4.664 14.647-6.055 5.4-1.391 11.046-2.373 16.856-3.027 7.037-.737 12.683-1.391 17.102-1.964 4.337-.573 7.528-1.555 9.574-2.782 1.963-1.309 3.027-3.273 3.027-5.973v-.491c0-5.891-1.718-10.391-5.237-13.664-3.518-3.191-8.51-4.828-15.056-4.828-6.955 0-12.356 1.473-16.447 4.5-4.009 3.028-6.71 6.546-8.183 10.719l-26.348-3.764c2.046-7.282 5.483-13.336 10.31-18.328 4.746-4.909 10.638-8.59 17.511-11.045 6.955-2.455 14.565-3.682 22.912-3.682 5.809 0 11.537.654 17.265 2.045s10.965 3.6 15.711 6.71c4.746 3.109 8.51 7.282 11.455 12.6 2.864 5.318 4.337 11.946 4.337 19.883v80.184h-27.166v-16.446h-.9c-1.719 3.355-4.092 6.464-7.201 9.328-3.109 2.864-6.955 5.237-11.619 6.955-4.828 1.718-10.229 2.536-16.529 2.536Zm7.364-20.701c5.646 0 10.556-1.145 14.729-3.354 4.173-2.291 7.364-5.237 9.655-9.001 2.292-3.763 3.355-7.854 3.355-12.273v-14.155c-.9.737-2.373 1.391-4.5 2.046-2.128.654-4.419 1.145-7.037 1.636-2.619.491-5.155.9-7.692 1.227-2.537.328-4.746.655-6.628.901-4.173.572-8.019 1.472-11.292 2.781-3.355 1.31-5.973 3.11-7.855 5.401-1.964 2.291-2.864 5.318-2.864 8.918 0 5.237 1.882 9.164 5.728 11.782 3.682 2.782 8.51 4.091 14.401 4.091Zm64.643 18.328V71.839h27.412v19.965h1.227c2.21-6.955 5.974-12.274 11.292-16.038 5.319-3.763 11.456-5.645 18.329-5.645 1.555 0 3.355.082 5.237.163 1.964.164 3.601.328 4.91.573v25.938c-1.227-.41-3.109-.819-5.646-1.146a58.814 58.814 0 0 0-7.446-.49c-5.155 0-9.738 1.145-13.829 3.354-4.091 2.209-7.282 5.236-9.655 9.164-2.373 3.927-3.519 8.427-3.519 13.5v70.448h-28.312ZM222.077 39.192l-8.019 125.923L137.387 0l84.69 39.192Zm-53.105 162.825-57.933 33.056-57.934-33.056 11.783-28.556h92.301l11.783 28.556ZM111.039 62.675l30.357 73.803H80.681l30.358-73.803ZM7.937 165.115 0 39.192 84.69 0 7.937 165.115Z"
-          />
-          <path
-            fill="url(#c)"
-            d="M388.676 191.625h30.849L363.31 31.828h-35.758l-56.215 159.797h30.848l13.174-39.356h60.061l13.256 39.356Zm-65.461-62.675 21.602-64.311h1.227l21.602 64.311h-44.431Zm126.831-7.527v70.202h-28.23V71.839h27.002v20.374h1.392c2.782-6.71 7.2-12.028 13.255-15.956 6.056-3.927 13.584-5.89 22.503-5.89 8.264 0 15.465 1.8 21.684 5.318 6.137 3.518 10.964 8.673 14.319 15.382 3.437 6.71 5.074 14.81 4.992 24.383v76.175h-28.23v-71.92c0-8.019-2.046-14.237-6.219-18.819-4.173-4.5-9.819-6.791-17.102-6.791-4.91 0-9.328 1.063-13.174 3.272-3.846 2.128-6.792 5.237-9.001 9.328-2.046 4.009-3.191 8.918-3.191 14.728ZM589.233 239c-10.147 0-18.82-1.391-26.103-4.091-7.282-2.7-13.092-6.382-17.511-10.964-4.418-4.582-7.528-9.655-9.164-15.219l25.448-6.136c1.145 2.372 2.782 4.663 4.991 6.954 2.209 2.291 5.155 4.255 8.837 5.81 3.683 1.554 8.428 2.291 14.074 2.291 8.019 0 14.647-1.964 19.884-5.81 5.237-3.845 7.856-10.227 7.856-19.064v-22.665h-1.391c-1.473 2.946-3.601 5.892-6.383 9.001-2.782 3.109-6.464 5.645-10.965 7.691-4.582 2.046-10.228 3.109-17.101 3.109-9.165 0-17.511-2.209-25.039-6.545-7.446-4.337-13.42-10.883-17.757-19.474-4.418-8.673-6.628-19.473-6.628-32.565 0-13.091 2.21-24.301 6.628-33.383 4.419-9.082 10.311-15.955 17.839-20.7 7.528-4.746 15.874-7.037 25.039-7.037 7.037 0 12.846 1.145 17.347 3.518 4.582 2.373 8.182 5.236 10.883 8.51 2.7 3.272 4.746 6.382 6.137 9.327h1.554v-19.8h27.821v121.749c0 10.228-2.454 18.737-7.364 25.447-4.91 6.709-11.538 11.7-20.048 15.055-8.509 3.355-18.165 4.991-28.884 4.991Zm.245-71.266c5.974 0 11.047-1.473 15.302-4.337 4.173-2.945 7.446-7.118 9.573-12.519 2.21-5.482 3.274-12.027 3.274-19.637 0-7.609-1.064-14.155-3.274-19.8-2.127-5.646-5.318-10.064-9.491-13.255-4.174-3.11-9.329-4.746-15.384-4.746s-11.537 1.636-15.792 4.91c-4.173 3.272-7.365 7.772-9.492 13.418-2.128 5.727-3.191 12.191-3.191 19.392 0 7.2 1.063 13.745 3.273 19.228 2.127 5.482 5.318 9.736 9.573 12.764 4.174 3.027 9.41 4.582 15.629 4.582Zm141.56-26.51V71.839h28.23v119.786h-27.412v-21.273h-1.227c-2.7 6.709-7.119 12.191-13.338 16.446-6.137 4.255-13.747 6.382-22.748 6.382-7.855 0-14.81-1.718-20.783-5.237-5.974-3.518-10.72-8.591-14.075-15.382-3.355-6.709-5.073-14.891-5.073-24.464V71.839h28.312v71.921c0 7.609 2.046 13.664 6.219 18.083 4.173 4.5 9.655 6.709 16.365 6.709 4.173 0 8.183-.982 12.111-3.028 3.927-2.045 7.118-5.072 9.655-9.082 2.537-4.091 3.764-9.164 3.764-15.218Zm65.707-109.395v159.796h-28.23V31.828h28.23Zm44.841 162.169c-7.61 0-14.402-1.391-20.457-4.091-6.055-2.7-10.883-6.791-14.32-12.109-3.518-5.319-5.237-11.946-5.237-19.801 0-6.791 1.228-12.355 3.765-16.773 2.536-4.419 5.891-7.937 10.228-10.637 4.337-2.618 9.164-4.664 14.647-6.055 5.4-1.391 11.046-2.373 16.856-3.027 7.037-.737 12.683-1.391 17.102-1.964 4.337-.573 7.528-1.555 9.574-2.782 1.963-1.309 3.027-3.273 3.027-5.973v-.491c0-5.891-1.718-10.391-5.237-13.664-3.518-3.191-8.51-4.828-15.056-4.828-6.955 0-12.356 1.473-16.447 4.5-4.009 3.028-6.71 6.546-8.183 10.719l-26.348-3.764c2.046-7.282 5.483-13.336 10.31-18.328 4.746-4.909 10.638-8.59 17.511-11.045 6.955-2.455 14.565-3.682 22.912-3.682 5.809 0 11.537.654 17.265 2.045s10.965 3.6 15.711 6.71c4.746 3.109 8.51 7.282 11.455 12.6 2.864 5.318 4.337 11.946 4.337 19.883v80.184h-27.166v-16.446h-.9c-1.719 3.355-4.092 6.464-7.201 9.328-3.109 2.864-6.955 5.237-11.619 6.955-4.828 1.718-10.229 2.536-16.529 2.536Zm7.364-20.701c5.646 0 10.556-1.145 14.729-3.354 4.173-2.291 7.364-5.237 9.655-9.001 2.292-3.763 3.355-7.854 3.355-12.273v-14.155c-.9.737-2.373 1.391-4.5 2.046-2.128.654-4.419 1.145-7.037 1.636-2.619.491-5.155.9-7.692 1.227-2.537.328-4.746.655-6.628.901-4.173.572-8.019 1.472-11.292 2.781-3.355 1.31-5.973 3.11-7.855 5.401-1.964 2.291-2.864 5.318-2.864 8.918 0 5.237 1.882 9.164 5.728 11.782 3.682 2.782 8.51 4.091 14.401 4.091Zm64.643 18.328V71.839h27.412v19.965h1.227c2.21-6.955 5.974-12.274 11.292-16.038 5.319-3.763 11.456-5.645 18.329-5.645 1.555 0 3.355.082 5.237.163 1.964.164 3.601.328 4.91.573v25.938c-1.227-.41-3.109-.819-5.646-1.146a58.814 58.814 0 0 0-7.446-.49c-5.155 0-9.738 1.145-13.829 3.354-4.091 2.209-7.282 5.236-9.655 9.164-2.373 3.927-3.519 8.427-3.519 13.5v70.448h-28.312ZM222.077 39.192l-8.019 125.923L137.387 0l84.69 39.192Zm-53.105 162.825-57.933 33.056-57.934-33.056 11.783-28.556h92.301l11.783 28.556ZM111.039 62.675l30.357 73.803H80.681l30.358-73.803ZM7.937 165.115 0 39.192 84.69 0 7.937 165.115Z"
-          />
-        </g>
-        <defs>
-          <radialGradient
-            id="c"
-            cx="0"
-            cy="0"
-            r="1"
-            gradientTransform="rotate(118.122 171.182 60.81) scale(205.794)"
-            gradientUnits="userSpaceOnUse"
-          >
-            <stop stop-color="#FF41F8" />
-            <stop offset=".707" stop-color="#FF41F8" stop-opacity=".5" />
-            <stop offset="1" stop-color="#FF41F8" stop-opacity="0" />
-          </radialGradient>
-          <linearGradient
-            id="b"
-            x1="0"
-            x2="982"
-            y1="192"
-            y2="192"
-            gradientUnits="userSpaceOnUse"
-          >
-            <stop stop-color="#F0060B" />
-            <stop offset="0" stop-color="#F0070C" />
-            <stop offset=".526" stop-color="#CC26D5" />
-            <stop offset="1" stop-color="#7702FF" />
-          </linearGradient>
-          <clipPath id="a"><path fill="#fff" d="M0 0h982v239H0z" /></clipPath>
-        </defs>
-      </svg>
-      <h1>Hello, {{ title() }}</h1>
-      <p>Congratulations! Your app is running. 🎉</p>
+    <!-- Action CTA -->
+    <div class="flex items-center gap-3">
+      <a href="#contato" class="neo-btn-lime px-4 py-2.5 rounded-xl font-grotesk font-bold text-xs sm:text-sm flex items-center gap-2">
+        <span>Orçar Projeto</span>
+        <span class="bg-black text-[#CCFF00] font-mono-tech text-xs px-1.5 py-0.5 rounded">{{ selectedServicesCart().length }}</span>
+      </a>
     </div>
-    <div class="divider" role="separator" aria-label="Divider"></div>
-    <div class="right-side">
-      <div class="pill-group">
-        @for (item of [
-          { title: 'Explore the Docs', link: 'https://angular.dev' },
-          { title: 'Learn with Tutorials', link: 'https://angular.dev/tutorials' },
-          { title: 'Prompt and best practices for AI', link: 'https://angular.dev/ai/develop-with-ai'},
-          { title: 'CLI Docs', link: 'https://angular.dev/tools/cli' },
-          { title: 'Angular Language Service', link: 'https://angular.dev/tools/language-service' },
-          { title: 'Angular DevTools', link: 'https://angular.dev/tools/devtools' },
-        ]; track item.title) {
-          <a
-            class="pill"
-            [href]="item.link"
-            target="_blank"
-            rel="noopener"
-          >
-            <span>{{ item.title }}</span>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              height="14"
-              viewBox="0 -960 960 960"
-              width="14"
-              fill="currentColor"
-            >
-              <path
-                d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h560v-280h80v280q0 33-23.5 56.5T760-120H200Zm188-212-56-56 372-372H560v-80h280v280h-80v-144L388-332Z"
-              />
-            </svg>
+  </div>
+</header>
+
+<!-- HERO SECTION -->
+<section class="relative bg-grid-pattern pt-10 pb-20 lg:pt-16 lg:pb-24 border-b border-zinc-800/80 overflow-hidden">
+  <!-- Ambient Glows -->
+  <div class="pointer-events-none absolute -top-24 -left-24 w-96 h-96 bg-[#7C3AED]/20 rounded-full blur-3xl"></div>
+  <div class="pointer-events-none absolute top-1/3 -right-24 w-96 h-96 bg-[#CCFF00]/10 rounded-full blur-3xl"></div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
+      
+      <!-- Left Column: High-Impact Copy -->
+      <div class="lg:col-span-7 space-y-6">
+        <div class="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-zinc-900/90 border border-zinc-700/80">
+          <span class="w-2 h-2 rounded-full bg-[#CCFF00]"></span>
+          <span class="font-mono-tech text-xs uppercase tracking-wider text-zinc-300">
+            14 Anos Transformando Marcas, Palcos, Moda & Carreiras Musicais
+          </span>
+        </div>
+
+        <h1 class="font-display font-extrabold text-4xl sm:text-6xl lg:text-[64px] leading-[1.02] tracking-tight text-white">
+          DO SOM AO VISUAL: <br />
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#CCFF00] via-[#00F0FF] to-[#FF2A85]">
+            CRIATIVIDADE QUE VENDE.
+          </span>
+        </h1>
+
+        <p class="text-zinc-300 text-base sm:text-lg max-w-2xl leading-relaxed font-normal">
+          Da engenharia visual completa de uma <strong class="text-white">hamburgueria</strong> ao key visual de <strong class="text-white">grandes festivais de música eletrônica</strong>. De <strong class="text-white">estampas exclusivas para Private Labels</strong> a <strong class="text-white">composições e hits para grupos de Pagode e Sertanejo</strong>.
+        </p>
+
+        <!-- Dual Action Buttons -->
+        <div class="flex flex-wrap items-center gap-4 pt-2">
+          <a href="#portfolio" class="neo-btn-lime px-6 py-4 rounded-xl font-grotesk font-bold text-base flex items-center gap-2.5">
+            <span>Explorar Portfólio 360°</span>
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
           </a>
+          <a href="#hitmaker" class="px-6 py-4 rounded-xl font-grotesk font-bold text-base bg-zinc-900 hover:bg-zinc-800 text-white border border-zinc-700 hover:border-[#FF2A85] transition-all flex items-center gap-2.5">
+            <span class="w-2.5 h-2.5 rounded-full bg-[#FF2A85]"></span>
+            <span>Ouvir Guias & Hits Inéditos</span>
+          </a>
+        </div>
+
+        <!-- 4 Quick Metrics -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-6 border-t border-zinc-800/80">
+          <div class="p-3 rounded-xl bg-zinc-900/60 border border-zinc-800">
+            <div class="font-display font-extrabold text-2xl text-[#CCFF00]">14+ Anos</div>
+            <div class="text-xs text-zinc-400">Experiência de Mercado</div>
+          </div>
+          <div class="p-3 rounded-xl bg-zinc-900/60 border border-zinc-800">
+            <div class="font-display font-extrabold text-2xl text-white">4 Frentes</div>
+            <div class="text-xs text-zinc-400">Design, Eventos, Moda & Som</div>
+          </div>
+          <div class="p-3 rounded-xl bg-zinc-900/60 border border-zinc-800">
+            <div class="font-display font-extrabold text-2xl text-[#FF2A85]">100%</div>
+            <div class="text-xs text-zinc-400">Autoral & Sob Medida</div>
+          </div>
+          <div class="p-3 rounded-xl bg-zinc-900/60 border border-zinc-800">
+            <div class="font-display font-extrabold text-2xl text-[#00F0FF]">360°</div>
+            <div class="text-xs text-zinc-400">Do Cardápio ao Palco</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: Interactive Showcase Deck -->
+      <div class="lg:col-span-5">
+        <div class="neo-card rounded-2xl p-5 sm:p-6 relative overflow-hidden">
+          <div class="flex items-center justify-between pb-4 mb-4 border-b border-zinc-800">
+            <div class="flex items-center gap-2">
+              <span class="w-3 h-3 rounded-full bg-[#FF2A85]"></span>
+              <span class="w-3 h-3 rounded-full bg-[#CCFF00]"></span>
+              <span class="w-3 h-3 rounded-full bg-[#00F0FF]"></span>
+            </div>
+            <span class="font-mono-tech text-xs text-zinc-400">ANNA_PUGA_HUB_V2.5</span>
+          </div>
+
+          <!-- Interactive Mini Grid inside Hero Card -->
+          <div class="grid grid-cols-2 gap-3.5">
+            <!-- Pillar 1 -->
+            <a href="#portfolio" (click)="setPortfolioFilter('eventos')" class="group p-4 rounded-xl bg-gradient-to-br from-[#7C3AED]/25 to-zinc-900 border border-[#7C3AED]/50 hover:border-[#CCFF00] transition-all">
+              <span class="font-mono-tech text-[10px] uppercase px-2 py-0.5 rounded bg-[#7C3AED]/30 text-purple-200">Pilar 01</span>
+              <h3 class="font-grotesk font-bold text-base text-white mt-2 group-hover:text-[#CCFF00]">Grandes Eventos & Cena Eletrônica</h3>
+              <p class="text-xs text-zinc-400 mt-1">Key visuals, festivais, telões e mídias externas.</p>
+            </a>
+
+            <!-- Pillar 2 -->
+            <a href="#portfolio" (click)="setPortfolioFilter('branding')" class="group p-4 rounded-xl bg-gradient-to-br from-[#CCFF00]/15 to-zinc-900 border border-[#CCFF00]/40 hover:border-[#CCFF00] transition-all">
+              <span class="font-mono-tech text-[10px] uppercase px-2 py-0.5 rounded bg-[#CCFF00]/20 text-[#CCFF00]">Pilar 02</span>
+              <h3 class="font-grotesk font-bold text-base text-white mt-2 group-hover:text-[#CCFF00]">Branding & Gastronomia</h3>
+              <p class="text-xs text-zinc-400 mt-1">Da logo ao cardápio e embalagem de hamburguerias.</p>
+            </a>
+
+            <!-- Pillar 3 -->
+            <a href="#estampas" class="group p-4 rounded-xl bg-gradient-to-br from-[#00F0FF]/15 to-zinc-900 border border-[#00F0FF]/40 hover:border-[#00F0FF] transition-all">
+              <span class="font-mono-tech text-[10px] uppercase px-2 py-0.5 rounded bg-[#00F0FF]/20 text-[#00F0FF]">Pilar 03</span>
+              <h3 class="font-grotesk font-bold text-base text-white mt-2 group-hover:text-[#00F0FF]">Estampas & Private Label</h3>
+              <p class="text-xs text-zinc-400 mt-1">Artes corridas e localizadas prontas para confecção.</p>
+            </a>
+
+            <!-- Pillar 4 -->
+            <a href="#hitmaker" class="group p-4 rounded-xl bg-gradient-to-br from-[#FF2A85]/20 to-zinc-900 border border-[#FF2A85]/40 hover:border-[#FF2A85] transition-all">
+              <span class="font-mono-tech text-[10px] uppercase px-2 py-0.5 rounded bg-[#FF2A85]/25 text-[#FF2A85]">Pilar 04</span>
+              <h3 class="font-grotesk font-bold text-base text-white mt-2 group-hover:text-[#FF2A85]">Composições & Imagem Artística</h3>
+              <p class="text-xs text-zinc-400 mt-1">Hits inéditos de Pagode & Sertanejo + direção visual.</p>
+            </a>
+          </div>
+
+          <!-- Bottom Live Audio Bar inside Hero -->
+          <div class="mt-4 p-3.5 rounded-xl bg-zinc-950/90 border border-zinc-800 flex items-center justify-between gap-3">
+            <div class="flex items-center gap-3">
+              <button (click)="togglePlayTrack(hitTracks()[0])" class="w-10 h-10 rounded-lg bg-[#FF2A85] text-white flex items-center justify-center hover:scale-105 transition-transform cursor-pointer">
+                @if (playingTrackId() === hitTracks()[0].id) {
+                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+                } @else {
+                  <svg class="w-5 h-5 ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                }
+              </button>
+              <div>
+                <div class="text-xs font-mono-tech text-[#FF2A85] uppercase">Guia em Destaque • Pagode</div>
+                <div class="text-sm font-grotesk font-bold text-white">{{ hitTracks()[0].title }}</div>
+              </div>
+            </div>
+            <span class="font-mono-tech text-xs px-2.5 py-1 rounded bg-zinc-900 text-[#CCFF00] border border-zinc-800">
+              Ouça Agora
+            </span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- INFINITE MARQUEE RIBBON -->
+<div class="bg-[#CCFF00] text-black py-3 border-b-2 border-black overflow-hidden select-none">
+  <div class="animate-marquee font-display font-extrabold text-sm sm:text-base uppercase tracking-wider flex items-center gap-8">
+    <span>★ LOGOMARCAS PARA ARTISTAS & EMPRESAS</span>
+    <span>✦ ARTE PARA GRANDES EVENTOS DE MÚSICA ELETRÔNica</span>
+    <span>★ IDENTIDADE COMPLETA & CARDÁPIOS DE HAMBURGUERIA</span>
+    <span>✦ ESTAMPAS EXCLUSIVAS PARA PRIVATE LABELS</span>
+    <span>★ COMPOSIÇÕES & HITS DE PAGODE E SERTANEJO</span>
+    <span>✦ ASSESSORIA DE IMAGEM & SOCIAL MEDIA</span>
+    <span>★ LOGOMARCAS PARA ARTISTAS & EMPRESAS</span>
+    <span>✦ ARTE PARA GRANDES EVENTOS DE MÚSICA ELETRÔNICA</span>
+    <span>★ IDENTIDADE COMPLETA & CARDÁPIOS DE HAMBURGUERIA</span>
+    <span>✦ ESTAMPAS EXCLUSIVAS PARA PRIVATE LABELS</span>
+  </div>
+</div>
+
+<!-- SECTION 1: ECOSSISTEMA 360° (COMO TUDO SE CONECTA PARA VENDER) -->
+<section id="ecossistema" class="py-20 border-b border-zinc-800/80">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+      <div>
+        <span class="font-mono-tech text-xs uppercase tracking-widest text-[#CCFF00]">// O Ecossistema Criativo</span>
+        <h2 class="font-display font-extrabold text-3xl sm:text-5xl text-white mt-2">
+          4 UNIDADES DE NEGÓCIO.<br />UMA DIREÇÃO CRIATIVA SÓLIDA.
+        </h2>
+      </div>
+      <p class="text-zinc-400 max-w-md text-sm sm:text-base">
+        Para quem contrata, você encontra solução ponta a ponta: seja para vestir uma marca de moda, lotar um festival, lançar uma hamburgueria ou gravar o próximo hit.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <!-- Pilar 1 -->
+      <div class="neo-card rounded-2xl p-6 flex flex-col justify-between">
+        <div>
+          <div class="w-12 h-12 rounded-xl bg-[#CCFF00]/15 border border-[#CCFF00]/40 text-[#CCFF00] flex items-center justify-center font-mono-tech font-bold text-lg mb-5">
+            01
+          </div>
+          <h3 class="font-grotesk font-bold text-xl text-white mb-2">Design, Branding & Gastronomia</h3>
+          <p class="text-zinc-400 text-sm leading-relaxed mb-4">
+            Logomarcas, identidade visual completa, cardápios estratégicos, fachadas e embalagens (do conceito inteiro de uma hamburgueria a franquias).
+          </p>
+          <ul class="space-y-1.5 text-xs text-zinc-300 font-mono-tech mb-6">
+            <li>• Logomarcas Empresas & Artistas</li>
+            <li>• Cardápios & Embalagens Delivery</li>
+            <li>• Mockups 3D de Apresentação</li>
+          </ul>
+        </div>
+        <button (click)="addItemToQuote('Identidade Visual & Cardápio (Gastronomia / Empresas)')" class="w-full py-2.5 px-4 rounded-xl bg-zinc-900 hover:bg-[#CCFF00] hover:text-black text-zinc-200 font-grotesk font-bold text-xs border border-zinc-700 transition-colors cursor-pointer">
+          + Incluir no Orçamento
+        </button>
+      </div>
+
+      <!-- Pilar 2 -->
+      <div class="neo-card rounded-2xl p-6 flex flex-col justify-between">
+        <div>
+          <div class="w-12 h-12 rounded-xl bg-[#7C3AED]/20 border border-[#7C3AED]/50 text-purple-300 flex items-center justify-center font-mono-tech font-bold text-lg mb-5">
+            02
+          </div>
+          <h3 class="font-grotesk font-bold text-xl text-white mb-2">Grandes Eventos & Eletrônica</h3>
+          <p class="text-zinc-400 text-sm leading-relaxed mb-4">
+            Key visuals de alto impacto para festivais, raves e clubs. Desdobramento para todas as mídias sociais, telões LED e mídias externas (outdoors).
+          </p>
+          <ul class="space-y-1.5 text-xs text-zinc-300 font-mono-tech mb-6">
+            <li>• Key Visual de Festivais & Lineups</li>
+            <li>• Mídias Externas (Outdoor/Painéis)</li>
+            <li>• Social Media & Tráfego de Eventos</li>
+          </ul>
+        </div>
+        <button (click)="addItemToQuote('Key Visual & Artes para Eventos / Música Eletrônica')" class="w-full py-2.5 px-4 rounded-xl bg-zinc-900 hover:bg-[#CCFF00] hover:text-black text-zinc-200 font-grotesk font-bold text-xs border border-zinc-700 transition-colors cursor-pointer">
+          + Incluir no Orçamento
+        </button>
+      </div>
+
+      <!-- Pilar 3 -->
+      <div class="neo-card rounded-2xl p-6 flex flex-col justify-between">
+        <div>
+          <div class="w-12 h-12 rounded-xl bg-[#00F0FF]/15 border border-[#00F0FF]/40 text-[#00F0FF] flex items-center justify-center font-mono-tech font-bold text-lg mb-5">
+            03
+          </div>
+          <h3 class="font-grotesk font-bold text-xl text-white mb-2">Estampas & Private Labels</h3>
+          <p class="text-zinc-400 text-sm leading-relaxed mb-4">
+            Criação de estampas corridas (rapport) e localizadas exclusivas para confecções, marcas próprias e coleções autorais.
+          </p>
+          <ul class="space-y-1.5 text-xs text-zinc-300 font-mono-tech mb-6">
+            <li>• Catálogo Pronta-Entrega Exclusivo</li>
+            <li>• Coleções Sob Medida Private Label</li>
+            <li>• Arquivos Fechados p/ Estamparia</li>
+          </ul>
+        </div>
+        <button (click)="addItemToQuote('Estampas Exclusivas (Private Label / Autoral)')" class="w-full py-2.5 px-4 rounded-xl bg-zinc-900 hover:bg-[#CCFF00] hover:text-black text-zinc-200 font-grotesk font-bold text-xs border border-zinc-700 transition-colors cursor-pointer">
+          + Incluir no Orçamento
+        </button>
+      </div>
+
+      <!-- Pilar 4 -->
+      <div class="neo-card neo-card-pink rounded-2xl p-6 flex flex-col justify-between">
+        <div>
+          <div class="w-12 h-12 rounded-xl bg-[#FF2A85]/20 border border-[#FF2A85]/50 text-[#FF2A85] flex items-center justify-center font-mono-tech font-bold text-lg mb-5">
+            04
+          </div>
+          <h3 class="font-grotesk font-bold text-xl text-white mb-2">Hitmaker & Assessoria Artística</h3>
+          <p class="text-zinc-400 text-sm leading-relaxed mb-4">
+            Composições inéditas e hits comerciais para grupos de Pagode e duplas Sertanejas, aliados à assessoria de imagem e marketing artístico.
+          </p>
+          <ul class="space-y-1.5 text-xs text-zinc-300 font-mono-tech mb-6">
+            <li>• Liberação de Obras & Guias Inéditas</li>
+            <li>• Assessoria de Imagem p/ Artistas</li>
+            <li>• Capas de Single, EP & Press Kit</li>
+          </ul>
+        </div>
+        <button (click)="addItemToQuote('Composição Musical / Liberação de Hit (Pagode / Sertanejo)')" class="w-full py-2.5 px-4 rounded-xl bg-zinc-900 hover:bg-[#FF2A85] hover:text-white text-zinc-200 font-grotesk font-bold text-xs border border-zinc-700 transition-colors cursor-pointer">
+          + Solicitar Guia / Obra
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 2: PORTFÓLIO INTERATIVO & CASES 360° -->
+<section id="portfolio" class="py-20 border-b border-zinc-800/80 bg-zinc-950/50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex flex-col lg:flex-row lg:items-end justify-between mb-10 gap-6">
+      <div>
+        <span class="font-mono-tech text-xs uppercase tracking-widest text-[#00F0FF]">// Vitrine de Projetos</span>
+        <h2 class="font-display font-extrabold text-3xl sm:text-5xl text-white mt-2">
+          PROJETOS PARA VISUALIZAR & EXPOR
+        </h2>
+        <p class="text-zinc-400 text-sm sm:text-base mt-2 max-w-2xl">
+          Filtre por especialidade e clique em qualquer projeto para inspecionar os entregáveis, a estratégia aplicada e os mockups da identidade criada.
+        </p>
+      </div>
+
+      <!-- Filter Pills -->
+      <div class="flex flex-wrap gap-2">
+        <button
+          (click)="setPortfolioFilter('todos')"
+          [class]="activePortfolioFilter() === 'todos' ? 'bg-[#CCFF00] text-black border-black font-bold' : 'bg-zinc-900 text-zinc-300 border-zinc-800 hover:border-zinc-600'"
+          class="px-4 py-2 rounded-xl text-xs font-mono-tech uppercase border transition-all cursor-pointer">
+          Todos (6)
+        </button>
+        <button
+          (click)="setPortfolioFilter('branding')"
+          [class]="activePortfolioFilter() === 'branding' ? 'bg-[#CCFF00] text-black border-black font-bold' : 'bg-zinc-900 text-zinc-300 border-zinc-800 hover:border-zinc-600'"
+          class="px-4 py-2 rounded-xl text-xs font-mono-tech uppercase border transition-all cursor-pointer">
+          Hamburgueria & Branding
+        </button>
+        <button
+          (click)="setPortfolioFilter('eventos')"
+          [class]="activePortfolioFilter() === 'eventos' ? 'bg-[#CCFF00] text-black border-black font-bold' : 'bg-zinc-900 text-zinc-300 border-zinc-800 hover:border-zinc-600'"
+          class="px-4 py-2 rounded-xl text-xs font-mono-tech uppercase border transition-all cursor-pointer">
+          Música Eletrônica & Eventos
+        </button>
+        <button
+          (click)="setPortfolioFilter('estampas')"
+          [class]="activePortfolioFilter() === 'estampas' ? 'bg-[#CCFF00] text-black border-black font-bold' : 'bg-zinc-900 text-zinc-300 border-zinc-800 hover:border-zinc-600'"
+          class="px-4 py-2 rounded-xl text-xs font-mono-tech uppercase border transition-all cursor-pointer">
+          Estampas & Moda
+        </button>
+        <button
+          (click)="setPortfolioFilter('artistas')"
+          [class]="activePortfolioFilter() === 'artistas' ? 'bg-[#CCFF00] text-black border-black font-bold' : 'bg-zinc-900 text-zinc-300 border-zinc-800 hover:border-zinc-600'"
+          class="px-4 py-2 rounded-xl text-xs font-mono-tech uppercase border transition-all cursor-pointer">
+          Artistas & Imagem
+        </button>
+      </div>
+    </div>
+
+    <!-- Portfolio Cards Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
+      @for (item of filteredPortfolio(); track item.id) {
+        <article class="neo-card rounded-2xl overflow-hidden flex flex-col justify-between group">
+          <div>
+            <!-- Custom Vector Art Cover -->
+            <div class="h-56 relative overflow-hidden bg-zinc-900 border-b border-zinc-800 flex items-center justify-center p-6">
+              @switch (item.svgType) {
+                @case ('burger') {
+                  <!-- Graphic Art: Burger Brand & Menu System -->
+                  <svg class="w-full h-full" viewBox="0 0 320 180" fill="none">
+                    <rect width="320" height="180" rx="12" fill="#121217"/>
+                    <circle cx="95" cy="90" r="58" fill="#CCFF00" fill-opacity="0.14" stroke="#CCFF00" stroke-width="2" stroke-dasharray="4 4"/>
+                    <path d="M55 82C55 62 135 62 135 82H55Z" fill="#CCFF00"/>
+                    <rect x="52" y="88" width="86" height="10" rx="5" fill="#FF2A85"/>
+                    <rect x="56" y="103" width="78" height="14" rx="6" fill="#FAFAFA"/>
+                    <rect x="170" y="38" width="125" height="104" rx="8" fill="#1F1F28" stroke="#CCFF00" stroke-width="1.5"/>
+                    <text x="184" y="62" fill="#CCFF00" font-family="monospace" font-size="11" font-weight="bold">MENU // BURGER</text>
+                    <line x1="184" y1="74" x2="275" y2="74" stroke="#3F3F46" stroke-width="2"/>
+                    <line x1="184" y1="90" x2="260" y2="90" stroke="#3F3F46" stroke-width="2"/>
+                    <line x1="184" y1="106" x2="270" y2="106" stroke="#3F3F46" stroke-width="2"/>
+                    <rect x="184" y="118" width="54" height="12" rx="4" fill="#FF2A85"/>
+                  </svg>
+                }
+                @case ('rave') {
+                  <!-- Graphic Art: Electronic Music Festival Key Visual -->
+                  <svg class="w-full h-full" viewBox="0 0 320 180" fill="none">
+                    <rect width="320" height="180" rx="12" fill="#0D0918"/>
+                    <circle cx="160" cy="90" r="65" stroke="#7C3AED" stroke-width="2"/>
+                    <circle cx="160" cy="90" r="45" stroke="#00F0FF" stroke-width="1.5" stroke-dasharray="6 4"/>
+                    <polygon points="160,32 212,132 108,132" stroke="#CCFF00" stroke-width="2.5" fill="rgba(204,255,0,0.08)"/>
+                    <text x="160" y="96" text-anchor="middle" fill="#FFFFFF" font-family="sans-serif" font-weight="800" font-size="15" letter-spacing="3">SOLARIS 2024</text>
+                  </svg>
+                }
+                @case ('botanical') {
+                  <!-- Graphic Art: Private Label Textile Pattern -->
+                  <svg class="w-full h-full" viewBox="0 0 320 180" fill="none">
+                    <rect width="320" height="180" rx="12" fill="#160C18"/>
+                    <path d="M40 140 Q 90 30 160 90 T 280 40" stroke="#FF2A85" stroke-width="4" fill="none"/>
+                    <circle cx="95" cy="70" r="24" fill="#CCFF00" fill-opacity="0.85"/>
+                    <circle cx="220" cy="110" r="32" fill="#00F0FF" fill-opacity="0.75"/>
+                    <rect x="135" y="55" width="55" height="70" rx="8" stroke="#FAFAFA" stroke-width="2"/>
+                    <text x="162" y="95" text-anchor="middle" fill="#FAFAFA" font-family="monospace" font-size="10">RAPPORT</text>
+                  </svg>
+                }
+                @case ('pagode') {
+                  <!-- Graphic Art: Artist Branding & Single Release -->
+                  <svg class="w-full h-full" viewBox="0 0 320 180" fill="none">
+                    <rect width="320" height="180" rx="12" fill="#0B151C"/>
+                    <circle cx="115" cy="90" r="52" fill="#18181B" stroke="#00F0FF" stroke-width="3"/>
+                    <circle cx="115" cy="90" r="18" fill="#FF2A85"/>
+                    <rect x="175" y="48" width="110" height="84" rx="10" fill="#121217" stroke="#CCFF00" stroke-width="1.5"/>
+                    <text x="230" y="82" text-anchor="middle" fill="#CCFF00" font-family="sans-serif" font-weight="bold" font-size="12">HIT + IMAGEM</text>
+                    <text x="230" y="104" text-anchor="middle" fill="#A1A1AA" font-family="monospace" font-size="10">+850K PLAYS</text>
+                  </svg>
+                }
+                @default {
+                  <!-- Graphic Art: Streetwear & Arena Signage -->
+                  <svg class="w-full h-full" viewBox="0 0 320 180" fill="none">
+                    <rect width="320" height="180" rx="12" fill="#131318"/>
+                    <rect x="35" y="30" width="250" height="120" rx="8" stroke="#CCFF00" stroke-width="2"/>
+                    <path d="M35 65 H285" stroke="#27272A" stroke-width="1.5"/>
+                    <circle cx="55" cy="48" r="6" fill="#FF2A85"/>
+                    <circle cx="75" cy="48" r="6" fill="#CCFF00"/>
+                    <text x="160" y="112" text-anchor="middle" fill="#FAFAFA" font-family="sans-serif" font-weight="800" font-size="18">CREATIVE 360°</text>
+                  </svg>
+                }
+              }
+
+              <span class="absolute top-3 left-3 font-mono-tech text-[11px] uppercase px-2.5 py-1 rounded-md bg-black/80 text-white border border-zinc-700">
+                {{ item.categoryLabel }}
+              </span>
+              <span class="absolute top-3 right-3 font-mono-tech text-[11px] px-2 py-1 rounded bg-zinc-900/90 text-[#CCFF00]">
+                {{ item.year }}
+              </span>
+            </div>
+
+            <!-- Card Body -->
+            <div class="p-6">
+              <h3 class="font-grotesk font-bold text-xl text-white group-hover:text-[#CCFF00] transition-colors">
+                {{ item.title }}
+              </h3>
+              <p class="text-zinc-400 text-sm mt-2 line-clamp-2">
+                {{ item.subtitle }}
+              </p>
+
+              <!-- Deliverables Badges -->
+              <div class="flex flex-wrap gap-1.5 mt-4">
+                @for (del of item.deliverables.slice(0, 3); track del) {
+                  <span class="text-[11px] font-mono-tech px-2 py-0.5 rounded bg-zinc-900 text-zinc-300 border border-zinc-800">
+                    {{ del }}
+                  </span>
+                }
+              </div>
+            </div>
+          </div>
+
+          <!-- Card Footer Action -->
+          <div class="px-6 pb-6 pt-3 border-t border-zinc-800/80 flex items-center justify-between gap-2">
+            <button
+              (click)="openCaseModal(item)"
+              class="text-xs font-grotesk font-bold uppercase tracking-wider text-[#CCFF00] hover:underline flex items-center gap-1.5 cursor-pointer">
+              <span>Ver Projeto & Mockups</span>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+            </button>
+
+            <button
+              (click)="addItemToQuote(item.priceReference)"
+              class="text-xs font-mono-tech px-3 py-1.5 rounded-lg bg-zinc-900 hover:bg-zinc-800 text-white border border-zinc-700 cursor-pointer">
+              Quero Similar
+            </button>
+          </div>
+        </article>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 3: HITMAKER STUDIO (PAGODE & SERTANEJO AUDIO DECK) -->
+<section id="hitmaker" class="py-20 border-b border-zinc-800/80 relative overflow-hidden">
+  <div class="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[550px] bg-[#FF2A85]/10 rounded-full blur-3xl"></div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <div class="flex flex-col lg:flex-row lg:items-end justify-between mb-12 gap-6">
+      <div>
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FF2A85]/15 border border-[#FF2A85]/40 text-[#FF2A85] font-mono-tech text-xs uppercase mb-3">
+          <span class="w-2 h-2 rounded-full bg-[#FF2A85] animate-ping"></span>
+          Catálogo de Obras Musicais & Guias Inéditas
+        </div>
+        <h2 class="font-display font-extrabold text-3xl sm:text-5xl text-white">
+          HITMAKER STUDIO: PAGODE & SERTANEJO
+        </h2>
+        <p class="text-zinc-400 text-sm sm:text-base mt-2 max-w-2xl">
+          Músicas comerciais prontas para estúdio ou composições sob encomenda para grupos de Pagode e duplas Sertanejas. Escute a guia e solicite a liberação ou exclusividade.
+        </p>
+      </div>
+
+      <!-- Genre Switcher -->
+      <div class="flex items-center gap-2 bg-zinc-900 p-1.5 rounded-xl border border-zinc-800 self-start">
+        @for (genre of ['Todos', 'Pagode', 'Sertanejo']; track genre) {
+          <button
+            (click)="activeHitGenreFilter.set($any(genre))"
+            [class]="activeHitGenreFilter() === genre ? 'bg-[#FF2A85] text-white font-bold' : 'text-zinc-400 hover:text-white'"
+            class="px-4 py-2 rounded-lg text-xs font-mono-tech uppercase transition-all cursor-pointer">
+            {{ genre }}
+          </button>
         }
       </div>
-      <div class="social-links">
-        <a
-          href="https://github.com/angular/angular"
-          aria-label="Github"
-          target="_blank"
-          rel="noopener"
-        >
-          <svg
-            width="25"
-            height="24"
-            viewBox="0 0 25 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            alt="Github"
-          >
-            <path
-              d="M12.3047 0C5.50634 0 0 5.50942 0 12.3047C0 17.7423 3.52529 22.3535 8.41332 23.9787C9.02856 24.0946 9.25414 23.7142 9.25414 23.3871C9.25414 23.0949 9.24389 22.3207 9.23876 21.2953C5.81601 22.0377 5.09414 19.6444 5.09414 19.6444C4.53427 18.2243 3.72524 17.8449 3.72524 17.8449C2.61064 17.082 3.81137 17.0973 3.81137 17.0973C5.04697 17.1835 5.69604 18.3647 5.69604 18.3647C6.79321 20.2463 8.57636 19.7029 9.27978 19.3881C9.39052 18.5924 9.70736 18.0499 10.0591 17.7423C7.32641 17.4347 4.45429 16.3765 4.45429 11.6618C4.45429 10.3185 4.9311 9.22133 5.72065 8.36C5.58222 8.04931 5.16694 6.79833 5.82831 5.10337C5.82831 5.10337 6.85883 4.77319 9.2121 6.36459C10.1965 6.09082 11.2424 5.95546 12.2883 5.94931C13.3342 5.95546 14.3801 6.09082 15.3644 6.36459C17.7023 4.77319 18.7328 5.10337 18.7328 5.10337C19.3942 6.79833 18.9789 8.04931 18.8559 8.36C19.6403 9.22133 20.1171 10.3185 20.1171 11.6618C20.1171 16.3888 17.2409 17.4296 14.5031 17.7321C14.9338 18.1012 15.3337 18.8559 15.3337 20.0084C15.3337 21.6552 15.3183 22.978 15.3183 23.3779C15.3183 23.7009 15.5336 24.0854 16.1642 23.9623C21.0871 22.3484 24.6094 17.7341 24.6094 12.3047C24.6094 5.50942 19.0999 0 12.3047 0Z"
-            />
+    </div>
+
+    <!-- Tracks Deck -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      @for (track of filteredHits(); track track.id) {
+        <div class="neo-card neo-card-pink rounded-2xl p-6 flex flex-col justify-between">
+          <div>
+            <!-- Track Header -->
+            <div class="flex items-start justify-between gap-4">
+              <div class="flex items-center gap-4">
+                <button
+                  (click)="togglePlayTrack(track)"
+                  class="w-14 h-14 rounded-2xl bg-[#FF2A85] text-white flex items-center justify-center border-2 border-black shadow-[4px_4px_0px_#CCFF00] hover:scale-105 transition-transform shrink-0 cursor-pointer">
+                  @if (playingTrackId() === track.id) {
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+                  } @else {
+                    <svg class="w-6 h-6 ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                  }
+                </button>
+                <div>
+                  <div class="flex flex-wrap items-center gap-2">
+                    <span class="font-mono-tech text-xs uppercase px-2.5 py-0.5 rounded bg-[#FF2A85]/20 text-[#FF2A85] border border-[#FF2A85]/40">
+                      {{ track.genre }}
+                    </span>
+                    <span class="font-mono-tech text-xs text-zinc-400">{{ track.bpm }} BPM • {{ track.keySignature }}</span>
+                  </div>
+                  <h3 class="font-grotesk font-bold text-xl text-white mt-1">{{ track.title }}</h3>
+                  <p class="text-xs text-zinc-400">{{ track.vibe }}</p>
+                </div>
+              </div>
+
+              <span class="font-mono-tech text-[11px] px-2.5 py-1 rounded bg-zinc-900 text-[#CCFF00] border border-zinc-800 shrink-0">
+                {{ track.status }}
+              </span>
+            </div>
+
+            <!-- Interactive Soundwave Equalizer -->
+            <div class="mt-5 p-3.5 rounded-xl bg-zinc-950/90 border border-zinc-800/90">
+              <div class="flex items-end justify-between gap-1.5 h-10 px-1">
+                @for (bar of track.barHeights; track $index) {
+                  <div
+                    [style.height.%]="bar"
+                    [class.eq-bar-playing]="playingTrackId() === track.id"
+                    [style.animation-delay.ms]="$index * 60"
+                    [class]="playingTrackId() === track.id ? 'bg-gradient-to-t from-[#FF2A85] to-[#CCFF00]' : 'bg-zinc-700'"
+                    class=" flex-1 rounded-t transition-all duration-300">
+                  </div>
+                }
+              </div>
+              <div class="flex items-center justify-between text-[11px] font-mono-tech text-zinc-400 mt-2">
+                <span>{{ playingTrackId() === track.id ? 'TOCANDO PRÉVIA SINTETIZADA...' : 'CLIQUE NO PLAY PARA OUVIR A PROGRESSÃO' }}</span>
+                <span>{{ track.duration }}</span>
+              </div>
+            </div>
+
+            <!-- Chorus Preview Collapsible -->
+            @if (expandedLyricsId() === track.id) {
+              <div class="mt-4 p-4 rounded-xl bg-zinc-900/90 border border-zinc-700 text-sm text-zinc-200 italic">
+                <div class="font-mono-tech text-[10px] uppercase text-[#CCFF00] not-italic mb-1">Trecho do Refrão:</div>
+                {{ track.chorusLyrics }}
+              </div>
+            }
+          </div>
+
+          <!-- Track Actions -->
+          <div class="mt-5 pt-4 border-t border-zinc-800 flex flex-wrap items-center justify-between gap-3">
+            <button
+              (click)="toggleLyrics(track.id)"
+              class="text-xs font-mono-tech text-zinc-300 hover:text-white underline cursor-pointer">
+              {{ expandedLyricsId() === track.id ? 'Ocultar Letra do Refrão' : 'Ver Letra do Refrão' }}
+            </button>
+
+            <button
+              (click)="addItemToQuote('Liberação / Guia Musical: ' + track.title + ' (' + track.genre + ')')"
+              class="px-4 py-2 rounded-xl bg-[#FF2A85] hover:bg-[#e01f73] text-white font-grotesk font-bold text-xs transition-colors cursor-pointer">
+              Solicitar Guia Completa / Reserva
+            </button>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 4: SHOWROOM DE ESTAMPAS & PROVADOR PRIVATE LABEL -->
+<section id="estampas" class="py-20 border-b border-zinc-800/80 bg-zinc-950/60">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="mb-12">
+      <span class="font-mono-tech text-xs uppercase tracking-widest text-[#CCFF00]">// Surface Design & Private Labels</span>
+      <h2 class="font-display font-extrabold text-3xl sm:text-5xl text-white mt-2">
+        SHOWROOM INTERATIVO DE ESTAMPAS
+      </h2>
+      <p class="text-zinc-400 text-sm sm:text-base mt-2 max-w-2xl">
+        Teste nossas estampas autorais diretamente nas peças abaixo. Desenvolvemos coleções exclusivas para confecções, marcas de streetwear, moda praia e private labels.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      <!-- Left: Catalog Selector (7 cols) -->
+      <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-5">
+        @for (print of printCatalog(); track print.id) {
+          <div
+            (click)="selectedPrintId.set(print.id)"
+            [class]="selectedPrintId() === print.id ? 'border-[#CCFF00] ring-2 ring-[#CCFF00]/40' : 'border-zinc-800'"
+            class="neo-card rounded-2xl p-5 cursor-pointer transition-all">
+            
+            <!-- Pattern Swatch Preview -->
+            <div class="h-36 rounded-xl mb-4 overflow-hidden border border-zinc-700 relative" [style.background-color]="print.bgHex">
+              <svg class="w-full h-full" viewBox="0 0 240 130">
+                @if (print.patternType === 'acid-flora') {
+                  <circle cx="50" cy="45" r="28" [attr.fill]="print.accentHex" fill-opacity="0.8"/>
+                  <circle cx="170" cy="85" r="36" [attr.fill]="print.secondaryHex" fill-opacity="0.75"/>
+                  <path d="M10 110 Q 120 10 230 100" [attr.stroke]="print.accentHex" stroke-width="5" fill="none"/>
+                } @else if (print.patternType === 'cyber-tribal') {
+                  <polygon points="120,15 190,115 50,115" [attr.stroke]="print.accentHex" stroke-width="4" fill="none"/>
+                  <polygon points="120,35 165,105 75,105" [attr.stroke]="print.secondaryHex" stroke-width="3" fill="none"/>
+                } @else if (print.patternType === 'tropical-noir') {
+                  <circle cx="120" cy="65" r="42" [attr.fill]="print.secondaryHex" fill-opacity="0.85"/>
+                  <path d="M40 65 H200 M120 15 V115" [attr.stroke]="print.accentHex" stroke-width="4"/>
+                } @else {
+                  <rect x="30" y="25" width="180" height="80" rx="8" [attr.stroke]="print.accentHex" stroke-width="4" fill="none"/>
+                  <text x="120" y="72" text-anchor="middle" [attr.fill]="print.secondaryHex" font-family="sans-serif" font-weight="900" font-size="20">ANNA PUGA</text>
+                }
+              </svg>
+              <span class="absolute top-2.5 right-2.5 font-mono-tech text-[10px] uppercase px-2 py-0.5 rounded bg-black/85 text-[#CCFF00] border border-zinc-700">
+                {{ print.exclusivity }}
+              </span>
+            </div>
+
+            <div class="font-mono-tech text-xs text-zinc-400">{{ print.collection }}</div>
+            <h3 class="font-grotesk font-bold text-lg text-white mt-0.5">{{ print.name }}</h3>
+            <p class="text-xs text-zinc-400 mt-1">{{ print.technique }}</p>
+
+            <div class="mt-4 pt-3 border-t border-zinc-800 flex items-center justify-between">
+              <span class="text-xs font-mono-tech text-[#CCFF00]">
+                {{ selectedPrintId() === print.id ? '● Aplicada no Provador' : 'Clique para testar na peça' }}
+              </span>
+              <button
+                (click)="$event.stopPropagation(); addItemToQuote('Reserva de Estampa: ' + print.name)"
+                class="text-xs font-grotesk font-bold px-3 py-1 rounded-lg bg-zinc-900 hover:bg-[#CCFF00] hover:text-black text-white border border-zinc-700 transition-colors cursor-pointer">
+                Reservar
+              </button>
+            </div>
+          </div>
+        }
+      </div>
+
+      <!-- Right: Live Garment Mockup Simulator (5 cols) -->
+      <div class="lg:col-span-5 neo-card rounded-2xl p-6 sticky top-24">
+        <div class="flex items-center justify-between border-b border-zinc-800 pb-4 mb-5">
+          <div>
+            <span class="font-mono-tech text-[11px] uppercase text-[#00F0FF]">Simulador Private Label</span>
+            <h3 class="font-grotesk font-bold text-xl text-white">{{ activePrint().name }}</h3>
+          </div>
+          <span class="font-mono-tech text-xs px-2.5 py-1 rounded bg-zinc-900 text-[#CCFF00] border border-zinc-700">
+            Mockup Live
+          </span>
+        </div>
+
+        <!-- Garment Type Selector -->
+        <div class="grid grid-cols-4 gap-2 mb-5">
+          <button
+            (click)="selectedGarment.set('tshirt')"
+            [class]="selectedGarment() === 'tshirt' ? 'bg-[#CCFF00] text-black font-bold' : 'bg-zinc-900 text-zinc-300'"
+            class="py-2 px-2 rounded-lg text-xs font-mono-tech uppercase border border-zinc-800 cursor-pointer">
+            T-Shirt
+          </button>
+          <button
+            (click)="selectedGarment.set('hoodie')"
+            [class]="selectedGarment() === 'hoodie' ? 'bg-[#CCFF00] text-black font-bold' : 'bg-zinc-900 text-zinc-300'"
+            class="py-2 px-2 rounded-lg text-xs font-mono-tech uppercase border border-zinc-800 cursor-pointer">
+            Moletom
+          </button>
+          <button
+            (click)="selectedGarment.set('totebag')"
+            [class]="selectedGarment() === 'totebag' ? 'bg-[#CCFF00] text-black font-bold' : 'bg-zinc-900 text-zinc-300'"
+            class="py-2 px-2 rounded-lg text-xs font-mono-tech uppercase border border-zinc-800 cursor-pointer">
+            Ecobag
+          </button>
+          <button
+            (click)="selectedGarment.set('dress')"
+            [class]="selectedGarment() === 'dress' ? 'bg-[#CCFF00] text-black font-bold' : 'bg-zinc-900 text-zinc-300'"
+            class="py-2 px-2 rounded-lg text-xs font-mono-tech uppercase border border-zinc-800 cursor-pointer">
+            Camisa/Moda
+          </button>
+        </div>
+
+        <!-- SVG Garment Preview Stage -->
+        <div class="h-72 rounded-2xl bg-zinc-950 border border-zinc-800 flex items-center justify-center p-6 relative">
+          <svg class="w-56 h-56 drop-shadow-2xl" viewBox="0 0 220 220">
+            <!-- Dynamic Garment Silhouette -->
+            @switch (selectedGarment()) {
+              @case ('tshirt') {
+                <path
+                  d="M65 30 L90 38 Q110 48 130 38 L155 30 L195 65 L172 95 L155 82 L155 190 L65 190 L65 82 L48 95 L25 65 Z"
+                  [attr.fill]="garmentBaseColor()"
+                  stroke="#52525B"
+                  stroke-width="2.5"/>
+              }
+              @case ('hoodie') {
+                <path
+                  d="M75 25 Q110 10 145 25 L195 65 L175 105 L155 88 L155 192 L65 192 L65 88 L45 105 L25 65 Z"
+                  [attr.fill]="garmentBaseColor()"
+                  stroke="#52525B"
+                  stroke-width="2.5"/>
+              }
+              @case ('totebag') {
+                <path
+                  d="M85 65 V35 Q110 18 135 35 V65 M55 65 H165 L175 195 H45 Z"
+                  [attr.fill]="garmentBaseColor()"
+                  stroke="#52525B"
+                  stroke-width="3"
+                  fill-rule="evenodd"/>
+              }
+              @case ('dress') {
+                <path
+                  d="M75 30 L100 42 L120 42 L145 30 L175 60 L155 80 L175 195 L45 195 L65 80 L45 60 Z"
+                  [attr.fill]="garmentBaseColor()"
+                  stroke="#52525B"
+                  stroke-width="2.5"/>
+              }
+            }
+
+            <!-- Applied Print Graphic on Center of Garment -->
+            <g transform="translate(73, 72)">
+              <rect width="74" height="82" rx="6" [attr.fill]="activePrint().bgHex" stroke="#3F3F46" stroke-width="1"/>
+              <circle cx="26" cy="30" r="16" [attr.fill]="activePrint().accentHex"/>
+              <circle cx="48" cy="52" r="20" [attr.fill]="activePrint().secondaryHex" fill-opacity="0.85"/>
+              <text x="37" y="74" text-anchor="middle" fill="#FFFFFF" font-family="monospace" font-size="7" font-weight="bold">ANNA PUGA</text>
+            </g>
           </svg>
+
+          <!-- Fabric Color Swatches -->
+          <div class="absolute bottom-3 right-3 flex items-center gap-1.5 bg-zinc-900/90 p-1.5 rounded-lg border border-zinc-700">
+            <button (click)="garmentBaseColor.set('#121216')" class="w-5 h-5 rounded bg-[#121216] border border-zinc-500 cursor-pointer" title="Preto Estonado"></button>
+            <button (click)="garmentBaseColor.set('#F4F4F6')" class="w-5 h-5 rounded bg-[#F4F4F6] border border-zinc-400 cursor-pointer" title="Off-White"></button>
+            <button (click)="garmentBaseColor.set('#581C87')" class="w-5 h-5 rounded bg-[#581C87] border border-purple-400 cursor-pointer" title="Roxo Club"></button>
+          </div>
+        </div>
+
+        <button
+          (click)="addItemToQuote('Licenciamento de Estampa: ' + activePrint().name)"
+          class="neo-btn-lime w-full mt-5 py-3.5 rounded-xl font-grotesk font-bold text-sm cursor-pointer">
+          Licenciar Esta Estampa ou Pedir Coleção Exclusiva
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 5: CONSTRUTOR DE ORÇAMENTO & BRIEFING DIRETO NO WHATSAPP -->
+<section id="contato" class="py-20 bg-grid-pattern">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="neo-card rounded-3xl p-6 sm:p-10 lg:p-12 border-2 border-[#CCFF00]">
+      <div class="max-w-2xl mb-8">
+        <span class="font-mono-tech text-xs uppercase tracking-widest text-[#CCFF00]">// Atendimento Comercial Direto</span>
+        <h2 class="font-display font-extrabold text-3xl sm:text-5xl text-white mt-2">
+          MONTE SEU PACOTE & CHAME NO WHATSAPP
+        </h2>
+        <p class="text-zinc-400 text-sm sm:text-base mt-2">
+          Selecione abaixo um ou mais serviços que você precisa. O resumo já vai formatado direto para o WhatsApp da Anna Puga.
+        </p>
+      </div>
+
+      <!-- Step 1: Service Checkboxes -->
+      <div class="mb-8">
+        <span class="block font-mono-tech text-xs uppercase text-zinc-300 mb-3">
+          1. O que você deseja contratar ou consultar? ({{ selectedServicesCart().length }} selecionado(s))
+        </span>
+        <div class="flex flex-wrap gap-2.5">
+          @for (service of availableServices; track service) {
+            <button
+              type="button"
+              (click)="toggleServiceInCart(service)"
+              [class]="isServiceSelected(service) ? 'bg-[#CCFF00] text-black border-black font-bold shadow-[3px_3px_0px_#FF2A85]' : 'bg-zinc-900 text-zinc-300 border-zinc-700 hover:border-zinc-500'"
+              class="px-4 py-2.5 rounded-xl text-xs sm:text-sm font-grotesk border transition-all cursor-pointer flex items-center gap-2">
+              <span>{{ isServiceSelected(service) ? '✓' : '+' }}</span>
+              <span>{{ service }}</span>
+            </button>
+          }
+        </div>
+      </div>
+
+      <!-- Step 2: Reactive Form -->
+      <form [formGroup]="briefingForm" (ngSubmit)="sendBriefingToWhatsApp()" class="space-y-5">
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <div>
+            <label class="block font-mono-tech text-xs uppercase text-zinc-300 mb-1.5">Seu Nome *</label>
+            <input
+              type="text"
+              formControlName="clientName"
+              placeholder="Ex: Marcos / Produtora X"
+              class="w-full px-4 py-3 rounded-xl bg-zinc-950 border border-zinc-700 text-white text-sm focus:outline-none focus:border-[#CCFF00]" />
+          </div>
+
+          <div>
+            <label class="block font-mono-tech text-xs uppercase text-zinc-300 mb-1.5">Empresa, Evento ou Grupo *</label>
+            <input
+              type="text"
+              formControlName="brandOrArtist"
+              placeholder="Ex: Hamburgueria / Grupo Pagode"
+              class="w-full px-4 py-3 rounded-xl bg-zinc-950 border border-zinc-700 text-white text-sm focus:outline-none focus:border-[#CCFF00]" />
+          </div>
+
+          <div>
+            <label class="block font-mono-tech text-xs uppercase text-zinc-300 mb-1.5">Prazo Desejado</label>
+            <select
+              formControlName="urgency"
+              class="w-full px-4 py-3 rounded-xl bg-zinc-950 border border-zinc-700 text-white text-sm focus:outline-none focus:border-[#CCFF00]">
+              <option value="Urgente (Esta semana)">Urgente (Esta semana)</option>
+              <option value="Normal (15 a 25 dias)">Normal (15 a 25 dias)</option>
+              <option value="Planejamento de Lançamento">Planejamento de Lançamento</option>
+            </select>
+          </div>
+        </div>
+
+        <div>
+          <label class="block font-mono-tech text-xs uppercase text-zinc-300 mb-1.5">Conte um pouco da sua ideia (Opcional)</label>
+          <textarea
+            rows="3"
+            formControlName="customNotes"
+            placeholder="Ex: Preciso da identidade visual e cardápio da minha hamburgueria / Quero ouvir guias inéditas de pagode..."
+            class="w-full px-4 py-3 rounded-xl bg-zinc-950 border border-zinc-700 text-white text-sm focus:outline-none focus:border-[#CCFF00]"></textarea>
+        </div>
+
+        <!-- Live WhatsApp Message Preview -->
+        <div class="p-4 rounded-xl bg-zinc-950/90 border border-zinc-800">
+          <div class="font-mono-tech text-[10px] uppercase text-[#CCFF00] mb-1">Prévia da mensagem que será enviada:</div>
+          <pre class="text-xs text-zinc-300 whitespace-pre-wrap font-sans">{{ whatsappPreviewText() }}</pre>
+        </div>
+
+        <button
+          type="submit"
+          class="neo-btn-lime w-full py-4 rounded-xl font-display font-extrabold text-base sm:text-lg uppercase tracking-wide flex items-center justify-center gap-3 cursor-pointer">
+          <span>Enviar Proposta Direto no WhatsApp da Anna Puga</span>
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+        </button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="py-10 border-t border-zinc-800 bg-[#09090B] text-center text-xs text-zinc-500 font-mono-tech">
+  <div class="max-w-7xl mx-auto px-4 flex flex-col items-center gap-5">
+    <div>ANNA PUGA // CREATIVE LAB & HITMAKER — 14 ANOS DE MERCADO</div>
+    <div>DESIGN GRÁFICO • EVENTOS • ESTAMPAS PRIVATE LABEL • COMPOSIÇÕES</div>
+    <div class="flex flex-col items-center gap-3 border-t border-zinc-800 pt-5">
+      <span class="uppercase tracking-widest text-zinc-400">Criamos o seu site</span>
+      <span class="font-grotesk font-bold text-sm text-white">Marcos Farias</span>
+      <div class="flex flex-wrap items-center justify-center gap-4">
+        <a
+          href="mailto:m.diazfarias@gmail.com"
+          class="flex items-center gap-2 text-zinc-300 transition-colors hover:text-[#CCFF00]">
+          <span aria-hidden="true">✉</span>
+          <span>m.diazfarias@gmail.com</span>
         </a>
         <a
-          href="https://x.com/angular"
-          aria-label="X"
+          href="https://wa.me/5548988621897"
           target="_blank"
-          rel="noopener"
-        >
-          <svg
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            alt="X"
-          >
-            <path
-              d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
-            />
+          rel="noopener noreferrer"
+          aria-label="Chamar Marcos Farias no WhatsApp"
+          class="flex items-center gap-2 text-zinc-300 transition-colors hover:text-[#CCFF00]">
+          <svg aria-hidden="true" class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M20.52 3.48A11.86 11.86 0 0 0 12.08 0C5.5 0 .14 5.35.14 11.94c0 2.1.55 4.15 1.6 5.96L.04 24l6.26-1.64a11.9 11.9 0 0 0 5.78 1.47h.01c6.58 0 11.94-5.36 11.94-11.94 0-3.19-1.24-6.19-3.51-8.41ZM12.09 21.8h-.01a9.9 9.9 0 0 1-5.04-1.38l-.36-.21-3.72.98.99-3.63-.23-.37a9.86 9.86 0 0 1-1.51-5.25c0-5.45 4.44-9.89 9.89-9.89 2.64 0 5.12 1.03 6.99 2.9a9.82 9.82 0 0 1 2.9 7c0 5.45-4.44 9.89-9.9 9.89Zm5.43-7.4c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.76-1.67-2.06-.18-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.92-2.2-.24-.58-.48-.5-.67-.51h-.57c-.2 0-.52.08-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.87 1.22 3.07c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.7.63.72.23 1.37.2 1.89.12.58-.09 1.76-.72 2.01-1.42.25-.7.25-1.29.17-1.42-.07-.12-.27-.2-.57-.35Z" />
           </svg>
-        </a>
-        <a
-          href="https://www.youtube.com/channel/UCbn1OgGei-DV7aSRo_HaAiw"
-          aria-label="Youtube"
-          target="_blank"
-          rel="noopener"
-        >
-          <svg
-            width="29"
-            height="20"
-            viewBox="0 0 29 20"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            alt="Youtube"
-          >
-            <path
-              fill-rule="evenodd"
-              clip-rule="evenodd"
-              d="M27.4896 1.52422C27.9301 1.96749 28.2463 2.51866 28.4068 3.12258C29.0004 5.35161 29.0004 10 29.0004 10C29.0004 10 29.0004 14.6484 28.4068 16.8774C28.2463 17.4813 27.9301 18.0325 27.4896 18.4758C27.0492 18.9191 26.5 19.2389 25.8972 19.4032C23.6778 20 14.8068 20 14.8068 20C14.8068 20 5.93586 20 3.71651 19.4032C3.11363 19.2389 2.56449 18.9191 2.12405 18.4758C1.68361 18.0325 1.36732 17.4813 1.20683 16.8774C0.613281 14.6484 0.613281 10 0.613281 10C0.613281 10 0.613281 5.35161 1.20683 3.12258C1.36732 2.51866 1.68361 1.96749 2.12405 1.52422C2.56449 1.08095 3.11363 0.76113 3.71651 0.596774C5.93586 0 14.8068 0 14.8068 0C14.8068 0 23.6778 0 25.8972 0.596774C26.5 0.76113 27.0492 1.08095 27.4896 1.52422ZM19.3229 10L11.9036 5.77905V14.221L19.3229 10Z"
-            />
-          </svg>
+          <span>WhatsApp: (48) 98862-1897</span>
         </a>
       </div>
     </div>
   </div>
-</main>
+</footer>
 
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * The content above * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * * -->
-<!-- * * * * * * * * * * and can be replaced.  * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * End of Placeholder  * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<!-- MODAL 360° DE DETALHES DO PROJETO (CASE STUDY) -->
+@if (selectedPortfolioModal(); as modalItem) {
+  <div
+    (click)="closeCaseModal()"
+    class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
+    <div
+      (click)="$event.stopPropagation()"
+      class="neo-card max-w-2xl w-full rounded-2xl p-6 sm:p-8 border-2 border-[#CCFF00] max-h-[90vh] overflow-y-auto">
+      
+      <div class="flex items-start justify-between gap-4 pb-4 border-b border-zinc-800">
+        <div>
+          <span class="font-mono-tech text-xs uppercase text-[#CCFF00]">{{ modalItem.categoryLabel }} • {{ modalItem.year }}</span>
+          <h3 class="font-display font-extrabold text-2xl sm:text-3xl text-white mt-1">{{ modalItem.title }}</h3>
+        </div>
+        <button
+          (click)="closeCaseModal()"
+          class="w-9 h-9 rounded-lg bg-zinc-900 hover:bg-zinc-800 text-zinc-300 flex items-center justify-center border border-zinc-700 cursor-pointer">
+          ✕
+        </button>
+      </div>
 
+      <div class="space-y-5 mt-5">
+        <div class="p-4 rounded-xl bg-zinc-900/90 border border-zinc-800">
+          <div class="font-mono-tech text-xs uppercase text-[#FF2A85] mb-1">Resultado Gerado</div>
+          <p class="text-white font-grotesk font-bold text-base">{{ modalItem.clientResult }}</p>
+        </div>
 
-<router-outlet />
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="p-4 rounded-xl bg-zinc-950 border border-zinc-800">
+            <div class="font-mono-tech text-xs uppercase text-zinc-400 mb-1">O Desafio</div>
+            <p class="text-zinc-300 text-sm leading-relaxed">{{ modalItem.challenge }}</p>
+          </div>
+          <div class="p-4 rounded-xl bg-zinc-950 border border-zinc-800">
+            <div class="font-mono-tech text-xs uppercase text-[#00F0FF] mb-1">A Solução Criativa</div>
+            <p class="text-zinc-300 text-sm leading-relaxed">{{ modalItem.solution }}</p>
+          </div>
+        </div>
+
+        <div>
+          <div class="font-mono-tech text-xs uppercase text-zinc-400 mb-2">Entregáveis do Projeto</div>
+          <div class="flex flex-wrap gap-2">
+            @for (item of modalItem.deliverables; track item) {
+              <span class="px-3 py-1.5 rounded-lg bg-zinc-900 text-zinc-200 border border-zinc-700 text-xs font-mono-tech">
+                ✓ {{ item }}
+              </span>
+            }
+          </div>
+        </div>
+
+        <div class="pt-4 border-t border-zinc-800 flex flex-wrap items-center justify-end gap-3">
+          <button
+            (click)="closeCaseModal()"
+            class="px-5 py-2.5 rounded-xl bg-zinc-900 text-zinc-300 text-xs font-mono-tech uppercase border border-zinc-700 cursor-pointer">
+            Fechar
+          </button>
+          <button
+            (click)="addItemToQuote(modalItem.priceReference)"
+            class="neo-btn-lime px-6 py-2.5 rounded-xl font-grotesk font-bold text-xs uppercase cursor-pointer">
+            Orçar Projeto Similar a Este
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+}

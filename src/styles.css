@@ -1,1 +1,89 @@
-/* You can add global styles to this file, and also import other style files */
+@import "tailwindcss";
+
+@theme {
+  --font-display: 'Syne', sans-serif;
+  --font-grotesk: 'Space Grotesk', sans-serif;
+  --font-sans: 'Plus Jakarta Sans', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: #09090B;
+  color: #FAFAFA;
+  font-family: var(--font-sans);
+}
+
+/* Utilitários Neo-Brutalistas & Animações Globais */
+.font-display {
+  font-family: var(--font-display);
+}
+.font-grotesk {
+  font-family: var(--font-grotesk);
+}
+.font-mono-tech {
+  font-family: var(--font-mono);
+}
+
+.neo-card {
+  background: rgba(20, 20, 25, 0.88);
+  backdrop-filter: blur(16px);
+  border: 1.5px solid #27272A;
+  transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.neo-card:hover {
+  border-color: #CCFF00;
+  box-shadow: 6px 6px 0px #CCFF00;
+  transform: translate(-2px, -2px);
+}
+
+.neo-card-pink:hover {
+  border-color: #FF2A85;
+  box-shadow: 6px 6px 0px #FF2A85;
+  transform: translate(-2px, -2px);
+}
+
+.neo-btn-lime {
+  background-color: #CCFF00;
+  color: #09090B;
+  border: 2px solid #09090B;
+  box-shadow: 4px 4px 0px #7C3AED;
+  transition: all 0.2s ease;
+}
+.neo-btn-lime:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px #FF2A85;
+}
+.neo-btn-lime:active {
+  transform: translate(1px, 1px);
+  box-shadow: 2px 2px 0px #FF2A85;
+}
+
+.bg-grid-pattern {
+  background-size: 36px 36px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+}
+
+@keyframes marqueeScroll {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marqueeScroll 28s linear infinite;
+}
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+@keyframes eqPulse {
+  0%, 100% { transform: scaleY(0.25); }
+  50% { transform: scaleY(1); }
+}
+.eq-bar-playing {
+  animation: eqPulse 0.75s ease-in-out infinite;
+  transform-origin: bottom;
+}
