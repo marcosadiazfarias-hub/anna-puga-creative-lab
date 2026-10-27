@@ -1,0 +1,426 @@
+<!-- SECTION 2: PORTFÓLIO INTERATIVO & CASES 360° -->
+<section id="portfolio" class="py-20 border-b border-zinc-800/80 bg-zinc-950/50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex flex-col lg:flex-row lg:items-end justify-between mb-10 gap-6">
+      <div>
+        <span class="font-mono-tech text-xs uppercase tracking-widest text-[#00F0FF]"
+          >// Vitrine de Projetos</span
+        >
+        <h2 class="font-display font-extrabold text-3xl sm:text-5xl text-white mt-2">
+          PROJETOS PARA VISUALIZAR & EXPOR
+        </h2>
+        <p class="text-zinc-400 text-sm sm:text-base mt-2 max-w-2xl">
+          Filtre por especialidade e clique em qualquer projeto para inspecionar os entregáveis, a
+          estratégia aplicada e os mockups da identidade criada.
+        </p>
+      </div>
+
+      <!-- Filter Pills -->
+      <div class="flex flex-wrap gap-2">
+        <button
+          (click)="setPortfolioFilter('todos')"
+          [class]="
+            activePortfolioFilter() === 'todos'
+              ? 'bg-[#CCFF00] text-black border-black font-bold'
+              : 'bg-zinc-900 text-zinc-300 border-zinc-800 hover:border-zinc-600'
+          "
+          class="px-4 py-2 rounded-xl text-xs font-mono-tech uppercase border transition-all cursor-pointer"
+        >
+          Todos (6)
+        </button>
+        <button
+          (click)="setPortfolioFilter('branding')"
+          [class]="
+            activePortfolioFilter() === 'branding'
+              ? 'bg-[#CCFF00] text-black border-black font-bold'
+              : 'bg-zinc-900 text-zinc-300 border-zinc-800 hover:border-zinc-600'
+          "
+          class="px-4 py-2 rounded-xl text-xs font-mono-tech uppercase border transition-all cursor-pointer"
+        >
+          Hamburgueria & Branding
+        </button>
+        <button
+          (click)="setPortfolioFilter('eventos')"
+          [class]="
+            activePortfolioFilter() === 'eventos'
+              ? 'bg-[#CCFF00] text-black border-black font-bold'
+              : 'bg-zinc-900 text-zinc-300 border-zinc-800 hover:border-zinc-600'
+          "
+          class="px-4 py-2 rounded-xl text-xs font-mono-tech uppercase border transition-all cursor-pointer"
+        >
+          Música Eletrônica & Eventos
+        </button>
+        <button
+          (click)="setPortfolioFilter('estampas')"
+          [class]="
+            activePortfolioFilter() === 'estampas'
+              ? 'bg-[#CCFF00] text-black border-black font-bold'
+              : 'bg-zinc-900 text-zinc-300 border-zinc-800 hover:border-zinc-600'
+          "
+          class="px-4 py-2 rounded-xl text-xs font-mono-tech uppercase border transition-all cursor-pointer"
+        >
+          Estampas & Moda
+        </button>
+        <button
+          (click)="setPortfolioFilter('artistas')"
+          [class]="
+            activePortfolioFilter() === 'artistas'
+              ? 'bg-[#CCFF00] text-black border-black font-bold'
+              : 'bg-zinc-900 text-zinc-300 border-zinc-800 hover:border-zinc-600'
+          "
+          class="px-4 py-2 rounded-xl text-xs font-mono-tech uppercase border transition-all cursor-pointer"
+        >
+          Artistas & Imagem
+        </button>
+      </div>
+    </div>
+
+    <!-- Portfolio Cards Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
+      @for (item of filteredPortfolio(); track item.id) {
+        <article class="neo-card rounded-2xl overflow-hidden flex flex-col justify-between group">
+          <div>
+            <!-- Custom Vector Art Cover -->
+            <div
+              class="h-56 relative overflow-hidden bg-zinc-900 border-b border-zinc-800 flex items-center justify-center p-6"
+            >
+              @switch (item.svgType) {
+                @case ('burger') {
+                  <!-- Graphic Art: Burger Brand & Menu System -->
+                  <svg class="w-full h-full" viewBox="0 0 320 180" fill="none">
+                    <rect width="320" height="180" rx="12" fill="#121217" />
+                    <circle
+                      cx="95"
+                      cy="90"
+                      r="58"
+                      fill="#CCFF00"
+                      fill-opacity="0.14"
+                      stroke="#CCFF00"
+                      stroke-width="2"
+                      stroke-dasharray="4 4"
+                    />
+                    <path d="M55 82C55 62 135 62 135 82H55Z" fill="#CCFF00" />
+                    <rect x="52" y="88" width="86" height="10" rx="5" fill="#FF2A85" />
+                    <rect x="56" y="103" width="78" height="14" rx="6" fill="#FAFAFA" />
+                    <rect
+                      x="170"
+                      y="38"
+                      width="125"
+                      height="104"
+                      rx="8"
+                      fill="#1F1F28"
+                      stroke="#CCFF00"
+                      stroke-width="1.5"
+                    />
+                    <text
+                      x="184"
+                      y="62"
+                      fill="#CCFF00"
+                      font-family="monospace"
+                      font-size="11"
+                      font-weight="bold"
+                    >
+                      MENU // BURGER
+                    </text>
+                    <line x1="184" y1="74" x2="275" y2="74" stroke="#3F3F46" stroke-width="2" />
+                    <line x1="184" y1="90" x2="260" y2="90" stroke="#3F3F46" stroke-width="2" />
+                    <line x1="184" y1="106" x2="270" y2="106" stroke="#3F3F46" stroke-width="2" />
+                    <rect x="184" y="118" width="54" height="12" rx="4" fill="#FF2A85" />
+                  </svg>
+                }
+                @case ('rave') {
+                  <!-- Graphic Art: Electronic Music Festival Key Visual -->
+                  <svg class="w-full h-full" viewBox="0 0 320 180" fill="none">
+                    <rect width="320" height="180" rx="12" fill="#0D0918" />
+                    <circle cx="160" cy="90" r="65" stroke="#7C3AED" stroke-width="2" />
+                    <circle
+                      cx="160"
+                      cy="90"
+                      r="45"
+                      stroke="#00F0FF"
+                      stroke-width="1.5"
+                      stroke-dasharray="6 4"
+                    />
+                    <polygon
+                      points="160,32 212,132 108,132"
+                      stroke="#CCFF00"
+                      stroke-width="2.5"
+                      fill="rgba(204,255,0,0.08)"
+                    />
+                    <text
+                      x="160"
+                      y="96"
+                      text-anchor="middle"
+                      fill="#FFFFFF"
+                      font-family="sans-serif"
+                      font-weight="800"
+                      font-size="15"
+                      letter-spacing="3"
+                    >
+                      SOLARIS 2024
+                    </text>
+                  </svg>
+                }
+                @case ('botanical') {
+                  <!-- Graphic Art: Private Label Textile Pattern -->
+                  <svg class="w-full h-full" viewBox="0 0 320 180" fill="none">
+                    <rect width="320" height="180" rx="12" fill="#160C18" />
+                    <path
+                      d="M40 140 Q 90 30 160 90 T 280 40"
+                      stroke="#FF2A85"
+                      stroke-width="4"
+                      fill="none"
+                    />
+                    <circle cx="95" cy="70" r="24" fill="#CCFF00" fill-opacity="0.85" />
+                    <circle cx="220" cy="110" r="32" fill="#00F0FF" fill-opacity="0.75" />
+                    <rect
+                      x="135"
+                      y="55"
+                      width="55"
+                      height="70"
+                      rx="8"
+                      stroke="#FAFAFA"
+                      stroke-width="2"
+                    />
+                    <text
+                      x="162"
+                      y="95"
+                      text-anchor="middle"
+                      fill="#FAFAFA"
+                      font-family="monospace"
+                      font-size="10"
+                    >
+                      RAPPORT
+                    </text>
+                  </svg>
+                }
+                @case ('pagode') {
+                  <!-- Graphic Art: Artist Branding & Single Release -->
+                  <svg class="w-full h-full" viewBox="0 0 320 180" fill="none">
+                    <rect width="320" height="180" rx="12" fill="#0B151C" />
+                    <circle
+                      cx="115"
+                      cy="90"
+                      r="52"
+                      fill="#18181B"
+                      stroke="#00F0FF"
+                      stroke-width="3"
+                    />
+                    <circle cx="115" cy="90" r="18" fill="#FF2A85" />
+                    <rect
+                      x="175"
+                      y="48"
+                      width="110"
+                      height="84"
+                      rx="10"
+                      fill="#121217"
+                      stroke="#CCFF00"
+                      stroke-width="1.5"
+                    />
+                    <text
+                      x="230"
+                      y="82"
+                      text-anchor="middle"
+                      fill="#CCFF00"
+                      font-family="sans-serif"
+                      font-weight="bold"
+                      font-size="12"
+                    >
+                      HIT + IMAGEM
+                    </text>
+                    <text
+                      x="230"
+                      y="104"
+                      text-anchor="middle"
+                      fill="#A1A1AA"
+                      font-family="monospace"
+                      font-size="10"
+                    >
+                      +850K PLAYS
+                    </text>
+                  </svg>
+                }
+                @default {
+                  <!-- Graphic Art: Streetwear & Arena Signage -->
+                  <svg class="w-full h-full" viewBox="0 0 320 180" fill="none">
+                    <rect width="320" height="180" rx="12" fill="#131318" />
+                    <rect
+                      x="35"
+                      y="30"
+                      width="250"
+                      height="120"
+                      rx="8"
+                      stroke="#CCFF00"
+                      stroke-width="2"
+                    />
+                    <path d="M35 65 H285" stroke="#27272A" stroke-width="1.5" />
+                    <circle cx="55" cy="48" r="6" fill="#FF2A85" />
+                    <circle cx="75" cy="48" r="6" fill="#CCFF00" />
+                    <text
+                      x="160"
+                      y="112"
+                      text-anchor="middle"
+                      fill="#FAFAFA"
+                      font-family="sans-serif"
+                      font-weight="800"
+                      font-size="18"
+                    >
+                      CREATIVE 360°
+                    </text>
+                  </svg>
+                }
+              }
+
+              <span
+                class="absolute top-3 left-3 font-mono-tech text-[11px] uppercase px-2.5 py-1 rounded-md bg-black/80 text-white border border-zinc-700"
+              >
+                {{ item.categoryLabel }}
+              </span>
+              <span
+                class="absolute top-3 right-3 font-mono-tech text-[11px] px-2 py-1 rounded bg-zinc-900/90 text-[#CCFF00]"
+              >
+                {{ item.year }}
+              </span>
+            </div>
+
+            <!-- Card Body -->
+            <div class="p-6">
+              <h3
+                class="font-grotesk font-bold text-xl text-white group-hover:text-[#CCFF00] transition-colors"
+              >
+                {{ item.title }}
+              </h3>
+              <p class="text-zinc-400 text-sm mt-2 line-clamp-2">
+                {{ item.subtitle }}
+              </p>
+
+              <!-- Deliverables Badges -->
+              <div class="flex flex-wrap gap-1.5 mt-4">
+                @for (del of item.deliverables.slice(0, 3); track del) {
+                  <span
+                    class="text-[11px] font-mono-tech px-2 py-0.5 rounded bg-zinc-900 text-zinc-300 border border-zinc-800"
+                  >
+                    {{ del }}
+                  </span>
+                }
+              </div>
+            </div>
+          </div>
+
+          <!-- Card Footer Action -->
+          <div
+            class="px-6 pb-6 pt-3 border-t border-zinc-800/80 flex items-center justify-between gap-2"
+          >
+            <button
+              (click)="openCaseModal(item)"
+              class="text-xs font-grotesk font-bold uppercase tracking-wider text-[#CCFF00] hover:underline flex items-center gap-1.5 cursor-pointer"
+            >
+              <span>Ver Projeto & Mockups</span>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                />
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                />
+              </svg>
+            </button>
+
+            <button
+              (click)="addItemToQuote(item.priceReference)"
+              class="text-xs font-mono-tech px-3 py-1.5 rounded-lg bg-zinc-900 hover:bg-zinc-800 text-white border border-zinc-700 cursor-pointer"
+            >
+              Quero Similar
+            </button>
+          </div>
+        </article>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- MODAL 360° DE DETALHES DO PROJETO (CASE STUDY) -->
+@if (selectedPortfolioModal(); as modalItem) {
+  <div
+    (click)="closeCaseModal()"
+    class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4"
+  >
+    <div
+      (click)="$event.stopPropagation()"
+      class="neo-card max-w-2xl w-full rounded-2xl p-6 sm:p-8 border-2 border-[#CCFF00] max-h-[90vh] overflow-y-auto"
+    >
+      <div class="flex items-start justify-between gap-4 pb-4 border-b border-zinc-800">
+        <div>
+          <span class="font-mono-tech text-xs uppercase text-[#CCFF00]"
+            >{{ modalItem.categoryLabel }} • {{ modalItem.year }}</span
+          >
+          <h3 class="font-display font-extrabold text-2xl sm:text-3xl text-white mt-1">
+            {{ modalItem.title }}
+          </h3>
+        </div>
+        <button
+          (click)="closeCaseModal()"
+          class="w-9 h-9 rounded-lg bg-zinc-900 hover:bg-zinc-800 text-zinc-300 flex items-center justify-center border border-zinc-700 cursor-pointer"
+        >
+          ✕
+        </button>
+      </div>
+
+      <div class="space-y-5 mt-5">
+        <div class="p-4 rounded-xl bg-zinc-900/90 border border-zinc-800">
+          <div class="font-mono-tech text-xs uppercase text-[#FF2A85] mb-1">Resultado Gerado</div>
+          <p class="text-white font-grotesk font-bold text-base">{{ modalItem.clientResult }}</p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="p-4 rounded-xl bg-zinc-950 border border-zinc-800">
+            <div class="font-mono-tech text-xs uppercase text-zinc-400 mb-1">O Desafio</div>
+            <p class="text-zinc-300 text-sm leading-relaxed">{{ modalItem.challenge }}</p>
+          </div>
+          <div class="p-4 rounded-xl bg-zinc-950 border border-zinc-800">
+            <div class="font-mono-tech text-xs uppercase text-[#00F0FF] mb-1">
+              A Solução Criativa
+            </div>
+            <p class="text-zinc-300 text-sm leading-relaxed">{{ modalItem.solution }}</p>
+          </div>
+        </div>
+
+        <div>
+          <div class="font-mono-tech text-xs uppercase text-zinc-400 mb-2">
+            Entregáveis do Projeto
+          </div>
+          <div class="flex flex-wrap gap-2">
+            @for (item of modalItem.deliverables; track item) {
+              <span
+                class="px-3 py-1.5 rounded-lg bg-zinc-900 text-zinc-200 border border-zinc-700 text-xs font-mono-tech"
+              >
+                ✓ {{ item }}
+              </span>
+            }
+          </div>
+        </div>
+
+        <div class="pt-4 border-t border-zinc-800 flex flex-wrap items-center justify-end gap-3">
+          <button
+            (click)="closeCaseModal()"
+            class="px-5 py-2.5 rounded-xl bg-zinc-900 text-zinc-300 text-xs font-mono-tech uppercase border border-zinc-700 cursor-pointer"
+          >
+            Fechar
+          </button>
+          <button
+            (click)="addItemToQuote(modalItem.priceReference)"
+            class="neo-btn-lime px-6 py-2.5 rounded-xl font-grotesk font-bold text-xs uppercase cursor-pointer"
+          >
+            Orçar Projeto Similar a Este
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+}

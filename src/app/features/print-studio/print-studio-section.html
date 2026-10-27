@@ -1,0 +1,302 @@
+<!-- SECTION 4: SHOWROOM DE ESTAMPAS & PROVADOR PRIVATE LABEL -->
+<section id="estampas" class="py-20 border-b border-zinc-800/80 bg-zinc-950/60">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="mb-12">
+      <span class="font-mono-tech text-xs uppercase tracking-widest text-[#CCFF00]"
+        >// Surface Design & Private Labels</span
+      >
+      <h2 class="font-display font-extrabold text-3xl sm:text-5xl text-white mt-2">
+        SHOWROOM INTERATIVO DE ESTAMPAS
+      </h2>
+      <p class="text-zinc-400 text-sm sm:text-base mt-2 max-w-2xl">
+        Teste nossas estampas autorais diretamente nas peças abaixo. Desenvolvemos coleções
+        exclusivas para confecções, marcas de streetwear, moda praia e private labels.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      <!-- Left: Catalog Selector (7 cols) -->
+      <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-5">
+        @for (print of printCatalog(); track print.id) {
+          <div
+            (click)="selectedPrintId.set(print.id)"
+            [class]="
+              selectedPrintId() === print.id
+                ? 'border-[#CCFF00] ring-2 ring-[#CCFF00]/40'
+                : 'border-zinc-800'
+            "
+            class="neo-card rounded-2xl p-5 cursor-pointer transition-all"
+          >
+            <!-- Pattern Swatch Preview -->
+            <div
+              class="h-36 rounded-xl mb-4 overflow-hidden border border-zinc-700 relative"
+              [style.background-color]="print.bgHex"
+            >
+              <svg class="w-full h-full" viewBox="0 0 240 130">
+                @if (print.patternType === 'acid-flora') {
+                  <circle cx="50" cy="45" r="28" [attr.fill]="print.accentHex" fill-opacity="0.8" />
+                  <circle
+                    cx="170"
+                    cy="85"
+                    r="36"
+                    [attr.fill]="print.secondaryHex"
+                    fill-opacity="0.75"
+                  />
+                  <path
+                    d="M10 110 Q 120 10 230 100"
+                    [attr.stroke]="print.accentHex"
+                    stroke-width="5"
+                    fill="none"
+                  />
+                } @else if (print.patternType === 'cyber-tribal') {
+                  <polygon
+                    points="120,15 190,115 50,115"
+                    [attr.stroke]="print.accentHex"
+                    stroke-width="4"
+                    fill="none"
+                  />
+                  <polygon
+                    points="120,35 165,105 75,105"
+                    [attr.stroke]="print.secondaryHex"
+                    stroke-width="3"
+                    fill="none"
+                  />
+                } @else if (print.patternType === 'tropical-noir') {
+                  <circle
+                    cx="120"
+                    cy="65"
+                    r="42"
+                    [attr.fill]="print.secondaryHex"
+                    fill-opacity="0.85"
+                  />
+                  <path
+                    d="M40 65 H200 M120 15 V115"
+                    [attr.stroke]="print.accentHex"
+                    stroke-width="4"
+                  />
+                } @else {
+                  <rect
+                    x="30"
+                    y="25"
+                    width="180"
+                    height="80"
+                    rx="8"
+                    [attr.stroke]="print.accentHex"
+                    stroke-width="4"
+                    fill="none"
+                  />
+                  <text
+                    x="120"
+                    y="72"
+                    text-anchor="middle"
+                    [attr.fill]="print.secondaryHex"
+                    font-family="sans-serif"
+                    font-weight="900"
+                    font-size="20"
+                  >
+                    ANNA PUGA
+                  </text>
+                }
+              </svg>
+              <span
+                class="absolute top-2.5 right-2.5 font-mono-tech text-[10px] uppercase px-2 py-0.5 rounded bg-black/85 text-[#CCFF00] border border-zinc-700"
+              >
+                {{ print.exclusivity }}
+              </span>
+            </div>
+
+            <div class="font-mono-tech text-xs text-zinc-400">{{ print.collection }}</div>
+            <h3 class="font-grotesk font-bold text-lg text-white mt-0.5">{{ print.name }}</h3>
+            <p class="text-xs text-zinc-400 mt-1">{{ print.technique }}</p>
+
+            <div class="mt-4 pt-3 border-t border-zinc-800 flex items-center justify-between">
+              <span class="text-xs font-mono-tech text-[#CCFF00]">
+                {{
+                  selectedPrintId() === print.id
+                    ? '● Aplicada no Provador'
+                    : 'Clique para testar na peça'
+                }}
+              </span>
+              <button
+                (click)="
+                  $event.stopPropagation(); addItemToQuote('Reserva de Estampa: ' + print.name)
+                "
+                class="text-xs font-grotesk font-bold px-3 py-1 rounded-lg bg-zinc-900 hover:bg-[#CCFF00] hover:text-black text-white border border-zinc-700 transition-colors cursor-pointer"
+              >
+                Reservar
+              </button>
+            </div>
+          </div>
+        }
+      </div>
+
+      <!-- Right: Live Garment Mockup Simulator (5 cols) -->
+      <div class="lg:col-span-5 neo-card rounded-2xl p-6 sticky top-24">
+        <div class="flex items-center justify-between border-b border-zinc-800 pb-4 mb-5">
+          <div>
+            <span class="font-mono-tech text-[11px] uppercase text-[#00F0FF]"
+              >Simulador Private Label</span
+            >
+            <h3 class="font-grotesk font-bold text-xl text-white">{{ activePrint().name }}</h3>
+          </div>
+          <span
+            class="font-mono-tech text-xs px-2.5 py-1 rounded bg-zinc-900 text-[#CCFF00] border border-zinc-700"
+          >
+            Mockup Live
+          </span>
+        </div>
+
+        <!-- Garment Type Selector -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 mb-5">
+          <button
+            (click)="selectedGarment.set('tshirt')"
+            [class]="
+              selectedGarment() === 'tshirt'
+                ? 'bg-[#CCFF00] text-black font-bold'
+                : 'bg-zinc-900 text-zinc-300'
+            "
+            class="py-2 px-2 rounded-lg text-xs font-mono-tech uppercase border border-zinc-800 cursor-pointer"
+          >
+            T-Shirt
+          </button>
+          <button
+            (click)="selectedGarment.set('hoodie')"
+            [class]="
+              selectedGarment() === 'hoodie'
+                ? 'bg-[#CCFF00] text-black font-bold'
+                : 'bg-zinc-900 text-zinc-300'
+            "
+            class="py-2 px-2 rounded-lg text-xs font-mono-tech uppercase border border-zinc-800 cursor-pointer"
+          >
+            Moletom
+          </button>
+          <button
+            (click)="selectedGarment.set('totebag')"
+            [class]="
+              selectedGarment() === 'totebag'
+                ? 'bg-[#CCFF00] text-black font-bold'
+                : 'bg-zinc-900 text-zinc-300'
+            "
+            class="py-2 px-2 rounded-lg text-xs font-mono-tech uppercase border border-zinc-800 cursor-pointer"
+          >
+            Ecobag
+          </button>
+          <button
+            (click)="selectedGarment.set('dress')"
+            [class]="
+              selectedGarment() === 'dress'
+                ? 'bg-[#CCFF00] text-black font-bold'
+                : 'bg-zinc-900 text-zinc-300'
+            "
+            class="py-2 px-2 rounded-lg text-xs font-mono-tech uppercase border border-zinc-800 cursor-pointer"
+          >
+            Camisa/Moda
+          </button>
+        </div>
+
+        <!-- SVG Garment Preview Stage -->
+        <div
+          class="h-72 rounded-2xl bg-zinc-950 border border-zinc-800 flex items-center justify-center p-6 relative"
+        >
+          <svg class="w-56 h-56 drop-shadow-2xl" viewBox="0 0 220 220">
+            <!-- Dynamic Garment Silhouette -->
+            @switch (selectedGarment()) {
+              @case ('tshirt') {
+                <path
+                  d="M65 30 L90 38 Q110 48 130 38 L155 30 L195 65 L172 95 L155 82 L155 190 L65 190 L65 82 L48 95 L25 65 Z"
+                  [attr.fill]="garmentBaseColor()"
+                  stroke="#52525B"
+                  stroke-width="2.5"
+                />
+              }
+              @case ('hoodie') {
+                <path
+                  d="M75 25 Q110 10 145 25 L195 65 L175 105 L155 88 L155 192 L65 192 L65 88 L45 105 L25 65 Z"
+                  [attr.fill]="garmentBaseColor()"
+                  stroke="#52525B"
+                  stroke-width="2.5"
+                />
+              }
+              @case ('totebag') {
+                <path
+                  d="M85 65 V35 Q110 18 135 35 V65 M55 65 H165 L175 195 H45 Z"
+                  [attr.fill]="garmentBaseColor()"
+                  stroke="#52525B"
+                  stroke-width="3"
+                  fill-rule="evenodd"
+                />
+              }
+              @case ('dress') {
+                <path
+                  d="M75 30 L100 42 L120 42 L145 30 L175 60 L155 80 L175 195 L45 195 L65 80 L45 60 Z"
+                  [attr.fill]="garmentBaseColor()"
+                  stroke="#52525B"
+                  stroke-width="2.5"
+                />
+              }
+            }
+
+            <!-- Applied Print Graphic on Center of Garment -->
+            <g transform="translate(73, 72)">
+              <rect
+                width="74"
+                height="82"
+                rx="6"
+                [attr.fill]="activePrint().bgHex"
+                stroke="#3F3F46"
+                stroke-width="1"
+              />
+              <circle cx="26" cy="30" r="16" [attr.fill]="activePrint().accentHex" />
+              <circle
+                cx="48"
+                cy="52"
+                r="20"
+                [attr.fill]="activePrint().secondaryHex"
+                fill-opacity="0.85"
+              />
+              <text
+                x="37"
+                y="74"
+                text-anchor="middle"
+                fill="#FFFFFF"
+                font-family="monospace"
+                font-size="7"
+                font-weight="bold"
+              >
+                ANNA PUGA
+              </text>
+            </g>
+          </svg>
+
+          <!-- Fabric Color Swatches -->
+          <div
+            class="absolute bottom-3 right-3 flex items-center gap-1.5 bg-zinc-900/90 p-1.5 rounded-lg border border-zinc-700"
+          >
+            <button
+              (click)="garmentBaseColor.set('#121216')"
+              class="w-5 h-5 rounded bg-[#121216] border border-zinc-500 cursor-pointer"
+              title="Preto Estonado"
+            ></button>
+            <button
+              (click)="garmentBaseColor.set('#F4F4F6')"
+              class="w-5 h-5 rounded bg-[#F4F4F6] border border-zinc-400 cursor-pointer"
+              title="Off-White"
+            ></button>
+            <button
+              (click)="garmentBaseColor.set('#581C87')"
+              class="w-5 h-5 rounded bg-[#581C87] border border-purple-400 cursor-pointer"
+              title="Roxo Club"
+            ></button>
+          </div>
+        </div>
+
+        <button
+          (click)="addItemToQuote('Licenciamento de Estampa: ' + activePrint().name)"
+          class="neo-btn-lime w-full mt-5 py-3.5 rounded-xl font-grotesk font-bold text-sm cursor-pointer"
+        >
+          Licenciar Esta Estampa ou Pedir Coleção Exclusiva
+        </button>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,126 @@
+<!-- SECTION 5: CONSTRUTOR DE ORÇAMENTO & BRIEFING DIRETO NO WHATSAPP -->
+<section id="contato" class="py-20 bg-grid-pattern">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="neo-card rounded-3xl p-6 sm:p-10 lg:p-12 border-2 border-[#CCFF00]">
+      <div class="max-w-2xl mb-8">
+        <span class="font-mono-tech text-xs uppercase tracking-widest text-[#CCFF00]"
+          >// Atendimento Comercial Direto</span
+        >
+        <h2 class="font-display font-extrabold text-3xl sm:text-5xl text-white mt-2">
+          MONTE SEU PACOTE & CHAME NO WHATSAPP
+        </h2>
+        <p class="text-zinc-400 text-sm sm:text-base mt-2">
+          Selecione abaixo um ou mais serviços que você precisa. O resumo já vai formatado direto
+          para o WhatsApp da Anna Puga.
+        </p>
+      </div>
+
+      <!-- Step 1: Service Checkboxes -->
+      <div class="mb-8">
+        <span class="block font-mono-tech text-xs uppercase text-zinc-300 mb-3">
+          1. O que você deseja contratar ou consultar? ({{ selectedServicesCart().length }}
+          selecionado(s))
+        </span>
+        <div class="flex flex-wrap gap-2.5">
+          @for (service of availableServices; track service) {
+            <button
+              type="button"
+              (click)="toggleServiceInCart(service)"
+              [class]="
+                isServiceSelected(service)
+                  ? 'bg-[#CCFF00] text-black border-black font-bold shadow-[3px_3px_0px_#FF2A85]'
+                  : 'bg-zinc-900 text-zinc-300 border-zinc-700 hover:border-zinc-500'
+              "
+              class="px-4 py-2.5 rounded-xl text-xs sm:text-sm font-grotesk border transition-all cursor-pointer flex items-center gap-2"
+            >
+              <span>{{ isServiceSelected(service) ? '✓' : '+' }}</span>
+              <span class="min-w-0 break-words">{{ service }}</span>
+            </button>
+          }
+        </div>
+      </div>
+
+      <!-- Step 2: Reactive Form -->
+      <form [formGroup]="briefingForm" (ngSubmit)="sendBriefingToWhatsApp()" class="space-y-5">
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <div>
+            <label class="block font-mono-tech text-xs uppercase text-zinc-300 mb-1.5"
+              >Seu Nome *</label
+            >
+            <input
+              type="text"
+              formControlName="clientName"
+              placeholder="Ex: Marcos / Produtora X"
+              class="w-full px-4 py-3 rounded-xl bg-zinc-950 border border-zinc-700 text-white text-sm focus:outline-none focus:border-[#CCFF00]"
+            />
+          </div>
+
+          <div>
+            <label class="block font-mono-tech text-xs uppercase text-zinc-300 mb-1.5"
+              >Empresa, Evento ou Grupo *</label
+            >
+            <input
+              type="text"
+              formControlName="brandOrArtist"
+              placeholder="Ex: Hamburgueria / Grupo Pagode"
+              class="w-full px-4 py-3 rounded-xl bg-zinc-950 border border-zinc-700 text-white text-sm focus:outline-none focus:border-[#CCFF00]"
+            />
+          </div>
+
+          <div>
+            <label class="block font-mono-tech text-xs uppercase text-zinc-300 mb-1.5"
+              >Prazo Desejado</label
+            >
+            <select
+              formControlName="urgency"
+              class="w-full px-4 py-3 rounded-xl bg-zinc-950 border border-zinc-700 text-white text-sm focus:outline-none focus:border-[#CCFF00]"
+            >
+              <option value="Urgente (Esta semana)">Urgente (Esta semana)</option>
+              <option value="Normal (15 a 25 dias)">Normal (15 a 25 dias)</option>
+              <option value="Planejamento de Lançamento">Planejamento de Lançamento</option>
+            </select>
+          </div>
+        </div>
+
+        <div>
+          <label class="block font-mono-tech text-xs uppercase text-zinc-300 mb-1.5"
+            >Conte um pouco da sua ideia (Opcional)</label
+          >
+          <textarea
+            rows="3"
+            formControlName="customNotes"
+            placeholder="Ex: Preciso da identidade visual e cardápio da minha hamburgueria / Quero ouvir guias inéditas de pagode..."
+            class="w-full px-4 py-3 rounded-xl bg-zinc-950 border border-zinc-700 text-white text-sm focus:outline-none focus:border-[#CCFF00]"
+          ></textarea>
+        </div>
+
+        <!-- Live WhatsApp Message Preview -->
+        <div class="p-4 rounded-xl bg-zinc-950/90 border border-zinc-800">
+          <div class="font-mono-tech text-[10px] uppercase text-[#CCFF00] mb-1">
+            Prévia da mensagem que será enviada:
+          </div>
+          <pre class="text-xs text-zinc-300 whitespace-pre-wrap font-sans">{{
+            whatsappPreviewText()
+          }}</pre>
+        </div>
+
+        <button
+          type="submit"
+          class="neo-btn-lime w-full py-4 rounded-xl font-display font-extrabold text-base sm:text-lg uppercase tracking-wide flex items-center justify-center gap-3 cursor-pointer"
+        >
+          <span class="min-w-0 break-words text-center"
+            >Enviar Proposta Direto no WhatsApp da Anna Puga</span
+          >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2.5"
+              d="M14 5l7 7m0 0l-7 7m7-7H3"
+            />
+          </svg>
+        </button>
+      </form>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,135 @@
+<!-- SECTION 1: ECOSSISTEMA 360° (COMO TUDO SE CONECTA PARA VENDER) -->
+<section id="ecossistema" class="py-20 border-b border-zinc-800/80">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+      <div>
+        <span class="font-mono-tech text-xs uppercase tracking-widest text-[#CCFF00]"
+          >// O Ecossistema Criativo</span
+        >
+        <h2 class="font-display font-extrabold text-3xl sm:text-5xl text-white mt-2">
+          4 UNIDADES DE NEGÓCIO.<br />UMA DIREÇÃO CRIATIVA SÓLIDA.
+        </h2>
+      </div>
+      <p class="text-zinc-400 max-w-md text-sm sm:text-base">
+        Para quem contrata, você encontra solução ponta a ponta: seja para vestir uma marca de moda,
+        lotar um festival, lançar uma hamburgueria ou gravar o próximo hit.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <!-- Pilar 1 -->
+      <div class="neo-card rounded-2xl p-6 flex flex-col justify-between">
+        <div>
+          <div
+            class="w-12 h-12 rounded-xl bg-[#CCFF00]/15 border border-[#CCFF00]/40 text-[#CCFF00] flex items-center justify-center font-mono-tech font-bold text-lg mb-5"
+          >
+            01
+          </div>
+          <h3 class="font-grotesk font-bold text-xl text-white mb-2">
+            Design, Branding & Gastronomia
+          </h3>
+          <p class="text-zinc-400 text-sm leading-relaxed mb-4">
+            Logomarcas, identidade visual completa, cardápios estratégicos, fachadas e embalagens
+            (do conceito inteiro de uma hamburgueria a franquias).
+          </p>
+          <ul class="space-y-1.5 text-xs text-zinc-300 font-mono-tech mb-6">
+            <li>• Logomarcas Empresas & Artistas</li>
+            <li>• Cardápios & Embalagens Delivery</li>
+            <li>• Mockups 3D de Apresentação</li>
+          </ul>
+        </div>
+        <button
+          (click)="addItemToQuote('Identidade Visual & Cardápio (Gastronomia / Empresas)')"
+          class="w-full py-2.5 px-4 rounded-xl bg-zinc-900 hover:bg-[#CCFF00] hover:text-black text-zinc-200 font-grotesk font-bold text-xs border border-zinc-700 transition-colors cursor-pointer"
+        >
+          + Incluir no Orçamento
+        </button>
+      </div>
+
+      <!-- Pilar 2 -->
+      <div class="neo-card rounded-2xl p-6 flex flex-col justify-between">
+        <div>
+          <div
+            class="w-12 h-12 rounded-xl bg-[#7C3AED]/20 border border-[#7C3AED]/50 text-purple-300 flex items-center justify-center font-mono-tech font-bold text-lg mb-5"
+          >
+            02
+          </div>
+          <h3 class="font-grotesk font-bold text-xl text-white mb-2">
+            Grandes Eventos & Eletrônica
+          </h3>
+          <p class="text-zinc-400 text-sm leading-relaxed mb-4">
+            Key visuals de alto impacto para festivais, raves e clubs. Desdobramento para todas as
+            mídias sociais, telões LED e mídias externas (outdoors).
+          </p>
+          <ul class="space-y-1.5 text-xs text-zinc-300 font-mono-tech mb-6">
+            <li>• Key Visual de Festivais & Lineups</li>
+            <li>• Mídias Externas (Outdoor/Painéis)</li>
+            <li>• Social Media & Tráfego de Eventos</li>
+          </ul>
+        </div>
+        <button
+          (click)="addItemToQuote('Key Visual & Artes para Eventos / Música Eletrônica')"
+          class="w-full py-2.5 px-4 rounded-xl bg-zinc-900 hover:bg-[#CCFF00] hover:text-black text-zinc-200 font-grotesk font-bold text-xs border border-zinc-700 transition-colors cursor-pointer"
+        >
+          + Incluir no Orçamento
+        </button>
+      </div>
+
+      <!-- Pilar 3 -->
+      <div class="neo-card rounded-2xl p-6 flex flex-col justify-between">
+        <div>
+          <div
+            class="w-12 h-12 rounded-xl bg-[#00F0FF]/15 border border-[#00F0FF]/40 text-[#00F0FF] flex items-center justify-center font-mono-tech font-bold text-lg mb-5"
+          >
+            03
+          </div>
+          <h3 class="font-grotesk font-bold text-xl text-white mb-2">Estampas & Private Labels</h3>
+          <p class="text-zinc-400 text-sm leading-relaxed mb-4">
+            Criação de estampas corridas (rapport) e localizadas exclusivas para confecções, marcas
+            próprias e coleções autorais.
+          </p>
+          <ul class="space-y-1.5 text-xs text-zinc-300 font-mono-tech mb-6">
+            <li>• Catálogo Pronta-Entrega Exclusivo</li>
+            <li>• Coleções Sob Medida Private Label</li>
+            <li>• Arquivos Fechados p/ Estamparia</li>
+          </ul>
+        </div>
+        <button
+          (click)="addItemToQuote('Estampas Exclusivas (Private Label / Autoral)')"
+          class="w-full py-2.5 px-4 rounded-xl bg-zinc-900 hover:bg-[#CCFF00] hover:text-black text-zinc-200 font-grotesk font-bold text-xs border border-zinc-700 transition-colors cursor-pointer"
+        >
+          + Incluir no Orçamento
+        </button>
+      </div>
+
+      <!-- Pilar 4 -->
+      <div class="neo-card neo-card-pink rounded-2xl p-6 flex flex-col justify-between">
+        <div>
+          <div
+            class="w-12 h-12 rounded-xl bg-[#FF2A85]/20 border border-[#FF2A85]/50 text-[#FF2A85] flex items-center justify-center font-mono-tech font-bold text-lg mb-5"
+          >
+            04
+          </div>
+          <h3 class="font-grotesk font-bold text-xl text-white mb-2">
+            Hitmaker & Assessoria Artística
+          </h3>
+          <p class="text-zinc-400 text-sm leading-relaxed mb-4">
+            Composições inéditas e hits comerciais para grupos de Pagode e duplas Sertanejas,
+            aliados à assessoria de imagem e marketing artístico.
+          </p>
+          <ul class="space-y-1.5 text-xs text-zinc-300 font-mono-tech mb-6">
+            <li>• Liberação de Obras & Guias Inéditas</li>
+            <li>• Assessoria de Imagem p/ Artistas</li>
+            <li>• Capas de Single, EP & Press Kit</li>
+          </ul>
+        </div>
+        <button
+          (click)="addItemToQuote('Composição Musical / Liberação de Hit (Pagode / Sertanejo)')"
+          class="w-full py-2.5 px-4 rounded-xl bg-zinc-900 hover:bg-[#FF2A85] hover:text-white text-zinc-200 font-grotesk font-bold text-xs border border-zinc-700 transition-colors cursor-pointer"
+        >
+          + Solicitar Guia / Obra
+        </button>
+      </div>
+    </div>
+  </div>
+</section>

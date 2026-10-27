@@ -1,0 +1,162 @@
+<!-- SECTION 3: HITMAKER STUDIO (PAGODE & SERTANEJO AUDIO DECK) -->
+<section id="hitmaker" class="py-20 border-b border-zinc-800/80 relative overflow-hidden">
+  <div
+    class="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[550px] bg-[#FF2A85]/10 rounded-full blur-3xl"
+  ></div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <div class="flex flex-col lg:flex-row lg:items-end justify-between mb-12 gap-6">
+      <div>
+        <div
+          class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FF2A85]/15 border border-[#FF2A85]/40 text-[#FF2A85] font-mono-tech text-xs uppercase mb-3"
+        >
+          <span class="w-2 h-2 rounded-full bg-[#FF2A85] animate-ping"></span>
+          Catálogo de Obras Musicais & Guias Inéditas
+        </div>
+        <h2 class="font-display font-extrabold text-3xl sm:text-5xl text-white">
+          HITMAKER STUDIO: PAGODE & SERTANEJO
+        </h2>
+        <p class="text-zinc-400 text-sm sm:text-base mt-2 max-w-2xl">
+          Músicas comerciais prontas para estúdio ou composições sob encomenda para grupos de Pagode
+          e duplas Sertanejas. Escute a guia e solicite a liberação ou exclusividade.
+        </p>
+      </div>
+
+      <!-- Genre Switcher -->
+      <div
+        class="flex items-center gap-2 bg-zinc-900 p-1.5 rounded-xl border border-zinc-800 self-start"
+      >
+        @for (genre of hitGenres; track genre) {
+          <button
+            (click)="setHitGenre(genre)"
+            [class]="
+              activeHitGenreFilter() === genre
+                ? 'bg-[#FF2A85] text-white font-bold'
+                : 'text-zinc-400 hover:text-white'
+            "
+            class="px-4 py-2 rounded-lg text-xs font-mono-tech uppercase transition-all cursor-pointer"
+          >
+            {{ genre }}
+          </button>
+        }
+      </div>
+    </div>
+
+    <!-- Tracks Deck -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      @for (track of filteredHits(); track track.id) {
+        <div class="neo-card neo-card-pink rounded-2xl p-6 flex flex-col justify-between">
+          <div>
+            <!-- Track Header -->
+            <div class="flex flex-wrap items-start justify-between gap-2 sm:gap-4">
+              <div class="flex min-w-0 flex-1 items-center gap-4">
+                <button
+                  (click)="togglePlayTrack(track)"
+                  class="w-14 h-14 rounded-2xl bg-[#FF2A85] text-white flex items-center justify-center border-2 border-black shadow-[4px_4px_0px_#CCFF00] hover:scale-105 transition-transform shrink-0 cursor-pointer"
+                >
+                  @if (playingTrackId() === track.id) {
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
+                    </svg>
+                  } @else {
+                    <svg class="w-6 h-6 ml-0.5" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M8 5v14l11-7z" />
+                    </svg>
+                  }
+                </button>
+                <div class="min-w-0">
+                  <div class="flex flex-wrap items-center gap-2">
+                    <span
+                      class="font-mono-tech text-xs uppercase px-2.5 py-0.5 rounded bg-[#FF2A85]/20 text-[#FF2A85] border border-[#FF2A85]/40"
+                    >
+                      {{ track.genre }}
+                    </span>
+                    <span class="font-mono-tech text-xs text-zinc-400"
+                      >{{ track.bpm }} BPM • {{ track.keySignature }}</span
+                    >
+                  </div>
+                  <h3 class="break-words font-grotesk font-bold text-xl text-white mt-1">
+                    {{ track.title }}
+                  </h3>
+                  <p class="text-xs text-zinc-400">{{ track.vibe }}</p>
+                </div>
+              </div>
+
+              <span
+                class="max-w-full whitespace-normal text-center font-mono-tech text-[11px] px-2.5 py-1 rounded bg-zinc-900 text-[#CCFF00] border border-zinc-800"
+              >
+                {{ track.status }}
+              </span>
+            </div>
+
+            <!-- Interactive Soundwave Equalizer -->
+            <div class="mt-5 p-3.5 rounded-xl bg-zinc-950/90 border border-zinc-800/90">
+              <div class="flex items-end justify-between gap-1.5 h-10 px-1">
+                @for (bar of track.barHeights; track $index) {
+                  <div
+                    [style.height.%]="bar"
+                    [class.eq-bar-playing]="playingTrackId() === track.id"
+                    [style.animation-delay.ms]="$index * 60"
+                    [class]="
+                      playingTrackId() === track.id
+                        ? 'bg-gradient-to-t from-[#FF2A85] to-[#CCFF00]'
+                        : 'bg-zinc-700'
+                    "
+                    class="flex-1 rounded-t transition-all duration-300"
+                  ></div>
+                }
+              </div>
+              <div
+                class="flex items-center justify-between text-[11px] font-mono-tech text-zinc-400 mt-2"
+              >
+                <span>{{
+                  playingTrackId() === track.id
+                    ? 'TOCANDO PRÉVIA SINTETIZADA...'
+                    : 'CLIQUE NO PLAY PARA OUVIR A PROGRESSÃO'
+                }}</span>
+                <span>{{ track.duration }}</span>
+              </div>
+            </div>
+
+            <!-- Chorus Preview Collapsible -->
+            @if (expandedLyricsId() === track.id) {
+              <div
+                class="mt-4 p-4 rounded-xl bg-zinc-900/90 border border-zinc-700 text-sm text-zinc-200 italic"
+              >
+                <div class="font-mono-tech text-[10px] uppercase text-[#CCFF00] not-italic mb-1">
+                  Trecho do Refrão:
+                </div>
+                {{ track.chorusLyrics }}
+              </div>
+            }
+          </div>
+
+          <!-- Track Actions -->
+          <div
+            class="mt-5 pt-4 border-t border-zinc-800 flex flex-wrap items-center justify-between gap-3"
+          >
+            <button
+              (click)="toggleLyrics(track.id)"
+              class="text-xs font-mono-tech text-zinc-300 hover:text-white underline cursor-pointer"
+            >
+              {{
+                expandedLyricsId() === track.id ? 'Ocultar Letra do Refrão' : 'Ver Letra do Refrão'
+              }}
+            </button>
+
+            <button
+              (click)="
+                addItemToQuote(
+                  'Liberação / Guia Musical: ' + track.title + ' (' + track.genre + ')'
+                )
+              "
+              class="px-4 py-2 rounded-xl bg-[#FF2A85] hover:bg-[#e01f73] text-white font-grotesk font-bold text-xs transition-colors cursor-pointer"
+            >
+              Solicitar Guia Completa / Reserva
+            </button>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
