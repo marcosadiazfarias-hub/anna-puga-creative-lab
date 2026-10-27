@@ -87,3 +87,36 @@ html {
   animation: eqPulse 0.75s ease-in-out infinite;
   transform-origin: bottom;
 }
+
+@media (max-width: 639px) {
+  .font-display {
+    overflow-wrap: anywhere;
+  }
+
+  .neo-card {
+    min-width: 0;
+  }
+
+  .neo-card h3,
+  .neo-card p {
+    overflow-wrap: anywhere;
+  }
+
+  #hitmaker .neo-card > div:first-child > div:first-child {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  #hitmaker .neo-card > div:first-child > div:first-child > div:first-child {
+    width: 100%;
+  }
+
+  #estampas .sticky {
+    position: static;
+  }
+
+  .fixed.bottom-6.right-6 {
+    left: 1rem;
+    max-width: calc(100vw - 2rem);
+  }
+}

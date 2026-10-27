@@ -14,7 +14,7 @@
       <div class="w-11 h-11 rounded-xl bg-[#CCFF00] text-black flex items-center justify-center font-display font-extrabold text-xl border-2 border-black shadow-[3px_3px_0px_#FF2A85] group-hover:rotate-6 transition-transform">
         AP
       </div>
-      <div>
+      <div class="min-w-0">
         <div class="flex items-center gap-2">
           <span class="font-display font-extrabold text-lg tracking-tight text-white">ANNA PUGA</span>
           <span class="font-mono-tech text-[10px] uppercase px-2 py-0.5 rounded bg-zinc-800 text-[#CCFF00] border border-zinc-700">14 YRS PRO</span>
@@ -55,14 +55,14 @@
       
       <!-- Left Column: High-Impact Copy -->
       <div class="lg:col-span-7 space-y-6">
-        <div class="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-zinc-900/90 border border-zinc-700/80">
+        <div class="inline-flex max-w-full flex-wrap items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-zinc-900/90 border border-zinc-700/80">
           <span class="w-2 h-2 rounded-full bg-[#CCFF00]"></span>
-          <span class="font-mono-tech text-xs uppercase tracking-wider text-zinc-300">
+          <span class="min-w-0 font-mono-tech text-xs uppercase tracking-wider text-zinc-300">
             14 Anos Transformando Marcas, Palcos, Moda & Carreiras Musicais
           </span>
         </div>
 
-        <h1 class="font-display font-extrabold text-4xl sm:text-6xl lg:text-[64px] leading-[1.02] tracking-tight text-white">
+        <h1 class="font-display font-extrabold text-3xl sm:text-6xl lg:text-[64px] leading-[1.02] tracking-tight text-white">
           DO SOM AO VISUAL: <br />
           <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#CCFF00] via-[#00F0FF] to-[#FF2A85]">
             CRIATIVIDADE QUE VENDE.
@@ -159,7 +159,7 @@
                   <svg class="w-5 h-5 ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
                 }
               </button>
-              <div>
+              <div class="min-w-0">
                 <div class="text-xs font-mono-tech text-[#FF2A85] uppercase">Guia em Destaque • Pagode</div>
                 <div class="text-sm font-grotesk font-bold text-white">{{ hitTracks()[0].title }}</div>
               </div>
@@ -499,8 +499,8 @@
         <div class="neo-card neo-card-pink rounded-2xl p-6 flex flex-col justify-between">
           <div>
             <!-- Track Header -->
-            <div class="flex items-start justify-between gap-4">
-              <div class="flex items-center gap-4">
+            <div class="flex flex-wrap items-start justify-between gap-2 sm:gap-4">
+              <div class="flex min-w-0 flex-1 items-center gap-4">
                 <button
                   (click)="togglePlayTrack(track)"
                   class="w-14 h-14 rounded-2xl bg-[#FF2A85] text-white flex items-center justify-center border-2 border-black shadow-[4px_4px_0px_#CCFF00] hover:scale-105 transition-transform shrink-0 cursor-pointer">
@@ -510,19 +510,19 @@
                     <svg class="w-6 h-6 ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
                   }
                 </button>
-                <div>
+                <div class="min-w-0">
                   <div class="flex flex-wrap items-center gap-2">
                     <span class="font-mono-tech text-xs uppercase px-2.5 py-0.5 rounded bg-[#FF2A85]/20 text-[#FF2A85] border border-[#FF2A85]/40">
                       {{ track.genre }}
                     </span>
                     <span class="font-mono-tech text-xs text-zinc-400">{{ track.bpm }} BPM • {{ track.keySignature }}</span>
                   </div>
-                  <h3 class="font-grotesk font-bold text-xl text-white mt-1">{{ track.title }}</h3>
+                  <h3 class="break-words font-grotesk font-bold text-xl text-white mt-1">{{ track.title }}</h3>
                   <p class="text-xs text-zinc-400">{{ track.vibe }}</p>
                 </div>
               </div>
 
-              <span class="font-mono-tech text-[11px] px-2.5 py-1 rounded bg-zinc-900 text-[#CCFF00] border border-zinc-800 shrink-0">
+              <span class="max-w-full whitespace-normal text-center font-mono-tech text-[11px] px-2.5 py-1 rounded bg-zinc-900 text-[#CCFF00] border border-zinc-800">
                 {{ track.status }}
               </span>
             </div>
@@ -651,7 +651,7 @@
         </div>
 
         <!-- Garment Type Selector -->
-        <div class="grid grid-cols-4 gap-2 mb-5">
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 mb-5">
           <button
             (click)="selectedGarment.set('tshirt')"
             [class]="selectedGarment() === 'tshirt' ? 'bg-[#CCFF00] text-black font-bold' : 'bg-zinc-900 text-zinc-300'"
@@ -768,7 +768,7 @@
               [class]="isServiceSelected(service) ? 'bg-[#CCFF00] text-black border-black font-bold shadow-[3px_3px_0px_#FF2A85]' : 'bg-zinc-900 text-zinc-300 border-zinc-700 hover:border-zinc-500'"
               class="px-4 py-2.5 rounded-xl text-xs sm:text-sm font-grotesk border transition-all cursor-pointer flex items-center gap-2">
               <span>{{ isServiceSelected(service) ? '✓' : '+' }}</span>
-              <span>{{ service }}</span>
+              <span class="min-w-0 break-words">{{ service }}</span>
             </button>
           }
         </div>
@@ -825,7 +825,7 @@
         <button
           type="submit"
           class="neo-btn-lime w-full py-4 rounded-xl font-display font-extrabold text-base sm:text-lg uppercase tracking-wide flex items-center justify-center gap-3 cursor-pointer">
-          <span>Enviar Proposta Direto no WhatsApp da Anna Puga</span>
+          <span class="min-w-0 break-words text-center">Enviar Proposta Direto no WhatsApp da Anna Puga</span>
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
         </button>
       </form>
